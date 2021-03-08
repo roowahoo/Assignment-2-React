@@ -8,7 +8,7 @@ export default class Profiles extends React.Component {
         profiles: [],
         name: '',
         age: '',
-        dob:'',
+        dob: '',
         gender: '',
         interests: [],
         introduction: '',
@@ -38,14 +38,14 @@ export default class Profiles extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <div>
-                    <h1>Sign Up</h1>
-                    <div className='col-md-9 m-3 text-left'>
+                <h1>Sign Up</h1>
+                <div id='signup'>
+                    <div className='m-3 text-left'>
                         <label className='form-label'>Name</label>
                         <input className="form-control" type="text" name='name' value={this.state.name} onChange={this.updateFormFields} />
                     </div>
 
-                    <div className='col-md-9 m-3 text-left'>
+                    <div className='m-3 text-left'>
                         <label className='form-label'>Gender</label>
                         <div className='form-check'>
                             <input className='form-check-input' type='radio' value='male' name='gender' onChange={this.updateFormFields} checked={this.state.gender === 'male'} />
@@ -57,15 +57,12 @@ export default class Profiles extends React.Component {
                         </div>
                     </div>
 
-
-                    <div className='col-md-9 m-3 text-left'>
+                    <div className='m-3 text-left'>
                         <label className='form-label'>DOB</label>
-                        <div className='d-flex'>
-                            <input className="form-control col-md-3" type="date" name='dob' value={this.state.dob} onChange={this.updateFormFields} />
-                        </div>
+                        <input className="form-control" type="date" name='dob' value={this.state.dob} onChange={this.updateFormFields} />
                     </div>
 
-                    <div className='d-flex flex-column'>
+                    <div className='m-3'>
                         <label className='form-label'>I Enjoy...</label>
                         <div className='form-check'>
                             <input className='form-check-input' type='checkbox' name='interests' value='sports' onChange={this.updateInterests} />
@@ -89,19 +86,19 @@ export default class Profiles extends React.Component {
                         </div>
                     </div>
 
-                    <div className='col-md-9 m-3 text-left'>
+                    <div className='m-3 text-left'>
                         <label className='form-label'>About Me</label>
                         <textarea className="form-control" type="text" name='introduction' value={this.state.introduction} onChange={this.updateFormFields}></textarea>
                     </div>
+                    <div className='d-flex justify-content-end'>
+                        <button className='btn btn-primary m-3 px-5' onClick={this.createProfile}>Submit</button>
+                    </div>
                 </div>
 
-                <button className='btn btn-primary' onClick={this.createProfile}>Submit</button>
-                <div className='m-3'>
+                <div id='profiles' className='m-3'>
                     <h1>Profiles</h1>
                     {this.renderProfiles()}
                 </div>
-
-
 
             </React.Fragment>
         )
