@@ -8,6 +8,7 @@ export default class Profiles extends React.Component {
         profiles: [],
         name: 'John',
         age: '30',
+        gender: '',
         interests: [],
         introduction: '',
 
@@ -38,16 +39,33 @@ export default class Profiles extends React.Component {
             <React.Fragment>
                 <div>
                     <h1>Sign Up</h1>
-                    <div className='d-flex justify-content-center'>
-                        <div className='col-md-4 m-3 text-left '>
-                            <label className='form-label'>Name</label>
-                            <input className="form-control" type="text" name='name' value={this.state.name} onChange={this.updateFormFields} />
+                    <div className='col-md-9 m-3 text-left'>
+                        <label className='form-label'>Name</label>
+                        <input className="form-control" type="text" name='name' value={this.state.name} onChange={this.updateFormFields} />
+                    </div>
+
+                    <div className='col-md-9 m-3 text-left'>
+                        <label className='form-label'>Gender</label>
+                        <div className='form-check'>
+                            <input className='form-check-input' type='radio' value='male' name='gender' onChange={this.updateFormFields} checked={this.state.gender==='male'}/>
+                            <label className='form-check-label'>Male</label>
                         </div>
-                        <div className='col-md-1 m-3 text-left'>
-                            <label className='form-label'>Age</label>
-                            <input className="form-control" type="text" name='age' value={this.state.age} onChange={this.updateFormFields} />
+                        <div className='form-check'>
+                            <input className='form-check-input' type='radio' value='female' name='gender' onChange={this.updateFormFields} checked={this.state.gender==='female'}/>
+                            <label className='form-check-label'>Female</label>
                         </div>
                     </div>
+
+
+                    <div className='col-md-9 m-3 text-left'>
+                        <label className='form-label'>DOB</label>
+                        <div className='d-flex'>
+                            <input className="form-control col-md-3" type="text" name='date' value={this.state.date} onChange={this.updateFormFields} placeholder='DD' />
+                            <input className="form-control col-md-3" type="text" name='month' value={this.state.month} onChange={this.updateFormFields} placeholder='MM' />
+                            <input className="form-control col-md-3" type="text" name='year' value={this.state.year} onChange={this.updateFormFields} placeholder='YYYY' />
+                        </div>
+                    </div>
+
                     <div className='d-flex flex-column'>
                         <label className='form-label'>Interests</label>
                         <div className='form-check'>
@@ -91,18 +109,18 @@ export default class Profiles extends React.Component {
 
     }
 
-    updateInterests=event=>{
-        if(this.state.interests.includes(event.target.value)===false){
-            let clonedArray=[...this.state.interests]
+    updateInterests = event => {
+        if (this.state.interests.includes(event.target.value) === false) {
+            let clonedArray = [...this.state.interests]
             clonedArray.push(event.target.value)
             this.setState({
-                interests:clonedArray
+                interests: clonedArray
             })
-        }else{
-            let clonedArray=[...this.state.interests]
-            clonedArray=clonedArray.filter(item=>item!==event.target.value)
+        } else {
+            let clonedArray = [...this.state.interests]
+            clonedArray = clonedArray.filter(item => item !== event.target.value)
             this.setState({
-                interests:clonedArray
+                interests: clonedArray
             })
         }
 
