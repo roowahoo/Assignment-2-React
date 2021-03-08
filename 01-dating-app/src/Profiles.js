@@ -6,8 +6,9 @@ const baseURL = 'https://3001-white-impala-sa4c1pjn.ws-us03.gitpod.io'
 export default class Profiles extends React.Component {
     state = {
         profiles: [],
-        name: 'John',
-        age: '30',
+        name: '',
+        age: '',
+        dob:'',
         gender: '',
         interests: [],
         introduction: '',
@@ -26,8 +27,8 @@ export default class Profiles extends React.Component {
             acc.push(
                 <div key={eachProfile._id} className='profiles'>
                     <h5>{eachProfile.name}, {eachProfile.age}</h5>
-                    <p>About: {eachProfile.introduction}</p>
                     <p>Interests: {eachProfile.interests}</p>
+                    <p>About: {eachProfile.introduction}</p>
                 </div>
             )
         }
@@ -47,11 +48,11 @@ export default class Profiles extends React.Component {
                     <div className='col-md-9 m-3 text-left'>
                         <label className='form-label'>Gender</label>
                         <div className='form-check'>
-                            <input className='form-check-input' type='radio' value='male' name='gender' onChange={this.updateFormFields} checked={this.state.gender==='male'}/>
+                            <input className='form-check-input' type='radio' value='male' name='gender' onChange={this.updateFormFields} checked={this.state.gender === 'male'} />
                             <label className='form-check-label'>Male</label>
                         </div>
                         <div className='form-check'>
-                            <input className='form-check-input' type='radio' value='female' name='gender' onChange={this.updateFormFields} checked={this.state.gender==='female'}/>
+                            <input className='form-check-input' type='radio' value='female' name='gender' onChange={this.updateFormFields} checked={this.state.gender === 'female'} />
                             <label className='form-check-label'>Female</label>
                         </div>
                     </div>
@@ -60,14 +61,12 @@ export default class Profiles extends React.Component {
                     <div className='col-md-9 m-3 text-left'>
                         <label className='form-label'>DOB</label>
                         <div className='d-flex'>
-                            <input className="form-control col-md-3" type="text" name='date' value={this.state.date} onChange={this.updateFormFields} placeholder='DD' />
-                            <input className="form-control col-md-3" type="text" name='month' value={this.state.month} onChange={this.updateFormFields} placeholder='MM' />
-                            <input className="form-control col-md-3" type="text" name='year' value={this.state.year} onChange={this.updateFormFields} placeholder='YYYY' />
+                            <input className="form-control col-md-3" type="date" name='dob' value={this.state.dob} onChange={this.updateFormFields} />
                         </div>
                     </div>
 
                     <div className='d-flex flex-column'>
-                        <label className='form-label'>Interests</label>
+                        <label className='form-label'>I Enjoy...</label>
                         <div className='form-check'>
                             <input className='form-check-input' type='checkbox' name='interests' value='sports' onChange={this.updateInterests} />
                             <label className='form-check-label'>Sports</label>
@@ -89,9 +88,14 @@ export default class Profiles extends React.Component {
                             <label className='form-check-label'>Education</label>
                         </div>
                     </div>
+
+                    <div className='col-md-9 m-3 text-left'>
+                        <label className='form-label'>About Me</label>
+                        <textarea className="form-control" type="text" name='introduction' value={this.state.introduction} onChange={this.updateFormFields}></textarea>
+                    </div>
                 </div>
 
-                <button onClick={this.createProfile}>Submit</button>
+                <button className='btn btn-primary' onClick={this.createProfile}>Submit</button>
                 <div className='m-3'>
                     <h1>Profiles</h1>
                     {this.renderProfiles()}
@@ -126,10 +130,23 @@ export default class Profiles extends React.Component {
 
     }
 
+    getAge = (date) => {
+        let dob = new Date(date)
+        let diff = Date.now() - dob.getTime()
+        let dateDiff = new Date(diff)
+        let year = dateDiff.getUTCFullYear()
+        let age = Math.abs(year - 1970)
+        return age
+
+    }
+
     createProfile = async event => {
+
+        console.log(this.getAge(this.state.dob))
         let newProfile = {
             name: this.state.name,
-            age: this.state.age,
+            gender: this.state.gender,
+            age: this.getAge(this.state.dob),
             interests: this.state.interests.join(', '),
             introduction: this.state.introduction
         }
@@ -141,6 +158,7 @@ export default class Profiles extends React.Component {
         this.setState({
             profiles: clonedArray
         })
+        window.location.reload()
     }
 
 }
