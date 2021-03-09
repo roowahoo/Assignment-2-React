@@ -110,7 +110,7 @@ export default class Profiles extends React.Component {
                     <h1>Profiles</h1>
                     {this.renderProfiles()}
                 </div>
-
+                                     
             </React.Fragment>
         )
     }
@@ -121,16 +121,30 @@ export default class Profiles extends React.Component {
 
     }
 
+    checkUserExists = (username) => {
+        let x = this.state.profiles.findIndex(u => u.username === username)
+        console.log(x)
+        if (x === -1) {
+            return true
+        } else {
+            return false
+        }
+    }
+
     showError = () => {
         let char = ['!', '@', '#', '$', '%', '^', '&', '*']
         for (let x of char) {
-            if (this.state.username.includes(x) && this.state.username.length > 4) {
+            if (this.state.username.includes(x) && this.state.username.length > 4  ) {
                 return true
             } else {
                 continue
             }
+
         }
+
     }
+    // && this.checkUserExists(this.state.username)
+
 
     updateInterests = event => {
         if (this.state.interests.includes(event.target.value) === false) {
@@ -161,18 +175,29 @@ export default class Profiles extends React.Component {
 
     createProfile = async event => {
 
-        console.log(this.getAge(this.state.dob))
+        // console.log(this.getAge(this.state.dob))
         let newProfile = {
             name: this.state.name,
-            username:this.state.username,
+            // username: this.state.username,
             gender: this.state.gender,
             age: this.getAge(this.state.dob),
             interests: this.state.interests.join(', '),
             introduction: this.state.introduction
         }
-        console.log(this.state.interests)
-       
-        if (this.showError()===true && this.state.name!=='' && this.state.dob!=='' && this.state.gender && this.state.interests!==[] && this.state.introduction!=='' ) {
+        let newUsername={
+            username:this.state.username
+        }
+        let response = await axios.post(baseURL+'/usernames',newUsername)
+            newUsername._id=response.data._id
+            let clone=[...this.state.username]
+            clone.push(newUsername)
+            this.setState({
+                username:clone
+            })
+        
+
+
+        if (this.showError() === true && this.state.name !== '' && this.state.dob !== '' && this.state.gender && this.state.interests.length > 0 && this.state.introduction !== '') {
             let response = await axios.post(baseURL + '/profiles', newProfile)
             newProfile._id = response.data._id
             let clonedArray = [...this.state.profiles]
