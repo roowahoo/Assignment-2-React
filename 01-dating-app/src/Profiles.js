@@ -7,6 +7,7 @@ export default class Profiles extends React.Component {
     state = {
         profiles: [],
         name: '',
+        username: '',
         age: '',
         dob: '',
         gender: '',
@@ -38,11 +39,21 @@ export default class Profiles extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <h1>Sign Up</h1>
+                <h1>Create Profile</h1>
                 <div id='signup'>
                     <div className='m-3 text-left'>
                         <label className='form-label'>Name</label>
                         <input className="form-control" type="text" name='name' value={this.state.name} onChange={this.updateFormFields} />
+                    </div>
+
+                    <div className='m-3 text-left'>
+                        <label className='form-label'>Username</label>
+                        <div className='input-group text-left'>
+                            <span className="input-group-text">@</span>
+                            <input className="form-control" type="text" name='username' value={this.state.username} onChange={this.updateFormFields} />
+                            <div id='username'>Your username is confidential and must be more than 4 characters long and include at least 1 special character.</div>
+                            <span style={{ display: this.showError() ? 'none' : 'block' }} className="error">Please enter a valid username</span>
+                        </div>
                     </div>
 
                     <div className='m-3 text-left'>
@@ -110,6 +121,17 @@ export default class Profiles extends React.Component {
 
     }
 
+    showError = () => {
+        let char = ['!', '@', '#', '$', '%', '^', '&', '*']
+        for (let x of char) {
+            if (this.state.username.includes(x) && this.state.username.length > 4) {
+                return true
+            } else {
+                continue
+            }
+        }
+    }
+
     updateInterests = event => {
         if (this.state.interests.includes(event.target.value) === false) {
             let clonedArray = [...this.state.interests]
@@ -142,20 +164,29 @@ export default class Profiles extends React.Component {
         console.log(this.getAge(this.state.dob))
         let newProfile = {
             name: this.state.name,
+            username:this.state.username,
             gender: this.state.gender,
             age: this.getAge(this.state.dob),
             interests: this.state.interests.join(', '),
             introduction: this.state.introduction
         }
+        console.log(this.state.interests)
+       
+        if (this.showError()===true && this.state.name!=='' && this.state.dob!=='' && this.state.gender && this.state.interests!==[] && this.state.introduction!=='' ) {
+            let response = await axios.post(baseURL + '/profiles', newProfile)
+            newProfile._id = response.data._id
+            let clonedArray = [...this.state.profiles]
+            clonedArray.push(newProfile)
+            this.setState({
+                profiles: clonedArray
+            })
+            window.location.reload()
+        } else {
+            alert('Please ensure all fields are filled in and valid')
 
-        let response = await axios.post(baseURL + '/profiles', newProfile)
-        newProfile._id = response.data._id
-        let clonedArray = [...this.state.profiles]
-        clonedArray.push(newProfile)
-        this.setState({
-            profiles: clonedArray
-        })
-        window.location.reload()
+        }
+
+
     }
 
 }

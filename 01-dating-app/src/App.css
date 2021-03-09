@@ -1,20 +1,45 @@
+.error{
+    color:red;
+}
+#username{
+    color:grey
+}
+
 @media (min-width:280px){
     #signup{
     border:1px solid gray;
-    width:80%;
+    width:300px;
     margin:auto;
     border-radius: 25px;
     }
 }
 @media (min-width: 360px){
+    #signup{
+    border:1px solid gray;
+    width:350px;
+    margin:auto;
+    border-radius: 25px;
+    }
 
 }
 
 @media (min-width: 768px){
+    #signup{
+    border:1px solid gray;
+    width:550px;
+    margin:auto;
+    border-radius: 25px;
+    }
 
 }
 
 @media (min-width: 1024px){
+    #signup{
+    border:1px solid gray;
+    width:650px;
+    margin:auto;
+    border-radius: 25px;
+    }
 
 }
  
