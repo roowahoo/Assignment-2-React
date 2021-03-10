@@ -186,29 +186,19 @@ export default class Profiles extends React.Component {
             interests: this.state.interests.join(', '),
             introduction: this.state.introduction
         }
-        let newUsername = {
-            username: this.state.username
-        }
-        try {
-            if (this.showError() === true && this.state.name !== '' && this.state.dob !== '' && this.state.gender && this.state.interests.length > 0 && this.state.introduction !== '') {
-                let response = await axios.post(baseURL + '/usernames', newUsername)
-                newUsername._id = response.data._id
-                let clone = [...this.state.username]
-                clone.push(newUsername)
-                this.setState({
-                    username: clone,
-                })
-            }
 
-            if (this.showError() === true && this.state.name !== '' && this.state.dob !== '' && this.state.gender && this.state.interests.length > 0 && this.state.introduction !== '' && this.state.username !=='') {
+
+        let profileId;
+        try {
+            if (this.showError() === true && this.state.name !== '' && this.state.dob !== '' && this.state.gender && this.state.interests.length > 0 && this.state.introduction !== '' && this.state.username !== '') {
                 let response = await axios.post(baseURL + '/profiles', newProfile)
-                newProfile._id = response.data._id
+                profileId = response.data.insertedId
                 let clonedArray = [...this.state.profiles]
                 clonedArray.push(newProfile)
                 this.setState({
                     profiles: clonedArray
                 })
-                window.location.reload()
+
             } else {
                 alert('Please ensure all fields are filled in and valid')
                 this.setState({
@@ -216,17 +206,26 @@ export default class Profiles extends React.Component {
                 })
 
             }
+            let newUsername = {
+                username: this.state.username,
+                user_id: profileId
+            }
 
+            if (this.showError() === true && this.state.name !== '' && this.state.dob !== '' && this.state.gender && this.state.interests.length > 0 && this.state.introduction !== '') {
+                await axios.post(baseURL + '/usernames', newUsername)
+                // newUsername._id = response.data._id
+                let clone = [...this.state.username]
+                clone.push(newUsername)
+                this.setState({
+                    username: clone,
+                })
+            }
+            window.location.reload();
         } catch (e) {
             this.setState({
                 errorMessage: true
             })
         }
-
-
-
-
-
 
     }
 
