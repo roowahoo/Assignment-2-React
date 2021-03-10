@@ -3,6 +3,7 @@ import axios from 'axios'
 
 const baseURL = 'https://3001-white-impala-sa4c1pjn.ws-us03.gitpod.io'
 
+
 export default class Profiles extends React.Component {
     state = {
         profiles: [],
@@ -13,6 +14,7 @@ export default class Profiles extends React.Component {
         gender: '',
         interests: [],
         introduction: '',
+        errorMessage: false
 
     }
     async componentDidMount() {
@@ -52,7 +54,8 @@ export default class Profiles extends React.Component {
                             <span className="input-group-text">@</span>
                             <input className="form-control" type="text" name='username' value={this.state.username} onChange={this.updateFormFields} />
                             <div id='username'>Your username is confidential and must be more than 4 characters long and include at least 1 special character.</div>
-                            <span style={{ display: this.showError() ? 'none' : 'block' }} className="error">Please enter a valid username</span>
+                            <span style={{ display: this.showError() ? 'none' : 'block' }} className='error'>Please enter a valid username</span>
+                            <span style={{ display: this.state.errorMessage ? 'block' : 'none' }} className='error'>Username has been taken</span>
                         </div>
                     </div>
 
@@ -110,7 +113,7 @@ export default class Profiles extends React.Component {
                     <h1>Profiles</h1>
                     {this.renderProfiles()}
                 </div>
-                                     
+
             </React.Fragment>
         )
     }
@@ -121,20 +124,20 @@ export default class Profiles extends React.Component {
 
     }
 
-    checkUserExists = (username) => {
-        let x = this.state.profiles.findIndex(u => u.username === username)
-        console.log(x)
-        if (x === -1) {
-            return true
-        } else {
-            return false
-        }
-    }
+    // checkUserExists = (username) => {
+    //     let x = this.state.profiles.findIndex(u => u.username === username)
+    //     console.log(x)
+    //     if (x === -1) {
+    //         return true
+    //     } else {
+    //         return false
+    //     }
+    // }
 
     showError = () => {
         let char = ['!', '@', '#', '$', '%', '^', '&', '*']
         for (let x of char) {
-            if (this.state.username.includes(x) && this.state.username.length > 4  ) {
+            if (this.state.username.includes(x) && this.state.username.length > 4) {
                 return true
             } else {
                 continue
@@ -178,38 +181,51 @@ export default class Profiles extends React.Component {
         // console.log(this.getAge(this.state.dob))
         let newProfile = {
             name: this.state.name,
-            // username: this.state.username,
             gender: this.state.gender,
             age: this.getAge(this.state.dob),
             interests: this.state.interests.join(', '),
             introduction: this.state.introduction
         }
-        let newUsername={
-            username:this.state.username
+        let newUsername = {
+            username: this.state.username
         }
-        let response = await axios.post(baseURL+'/usernames',newUsername)
-            newUsername._id=response.data._id
-            let clone=[...this.state.username]
-            clone.push(newUsername)
+        try {
+            if (this.showError() === true && this.state.name !== '' && this.state.dob !== '' && this.state.gender && this.state.interests.length > 0 && this.state.introduction !== '') {
+                let response = await axios.post(baseURL + '/usernames', newUsername)
+                newUsername._id = response.data._id
+                let clone = [...this.state.username]
+                clone.push(newUsername)
+                this.setState({
+                    username: clone,
+                })
+            }
+
+            if (this.showError() === true && this.state.name !== '' && this.state.dob !== '' && this.state.gender && this.state.interests.length > 0 && this.state.introduction !== '' && this.state.username !=='') {
+                let response = await axios.post(baseURL + '/profiles', newProfile)
+                newProfile._id = response.data._id
+                let clonedArray = [...this.state.profiles]
+                clonedArray.push(newProfile)
+                this.setState({
+                    profiles: clonedArray
+                })
+                window.location.reload()
+            } else {
+                alert('Please ensure all fields are filled in and valid')
+                this.setState({
+                    errorMessage: false
+                })
+
+            }
+
+        } catch (e) {
             this.setState({
-                username:clone
+                errorMessage: true
             })
-        
-
-
-        if (this.showError() === true && this.state.name !== '' && this.state.dob !== '' && this.state.gender && this.state.interests.length > 0 && this.state.introduction !== '') {
-            let response = await axios.post(baseURL + '/profiles', newProfile)
-            newProfile._id = response.data._id
-            let clonedArray = [...this.state.profiles]
-            clonedArray.push(newProfile)
-            this.setState({
-                profiles: clonedArray
-            })
-            window.location.reload()
-        } else {
-            alert('Please ensure all fields are filled in and valid')
-
         }
+
+
+
+
 
 
     }
