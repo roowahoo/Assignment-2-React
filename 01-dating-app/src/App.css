@@ -5,6 +5,12 @@
     color:grey
 }
 
+#search-bar{
+    width:80%;
+    margin:10px;
+    padding:10px
+}
+
 @media (min-width:280px){
     #signup{
     border:1px solid gray;

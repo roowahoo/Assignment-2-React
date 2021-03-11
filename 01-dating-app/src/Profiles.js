@@ -110,8 +110,7 @@ export default class Profiles extends React.Component {
                 </div>
 
                 <div id='profiles' className='m-3'>
-                    <h1>Profiles</h1>
-                    {this.renderProfiles()}
+                    
                 </div>
 
             </React.Fragment>
@@ -190,7 +189,7 @@ export default class Profiles extends React.Component {
 
         let profileId;
         try {
-            if (this.showError() === true && this.state.name !== '' && this.state.dob !== '' && this.state.gender && this.state.interests.length > 0 && this.state.introduction !== '' && this.state.username !== '') {
+            if (this.showError() === true && this.state.name !== '' && this.state.dob !== '' && this.state.gender !== '' && this.state.interests.length > 0 && this.state.introduction !== '' && this.state.username !== '') {
                 let response = await axios.post(baseURL + '/profiles', newProfile)
                 profileId = response.data.insertedId
                 let clonedArray = [...this.state.profiles]
@@ -211,7 +210,7 @@ export default class Profiles extends React.Component {
                 user_id: profileId
             }
 
-            if (this.showError() === true && this.state.name !== '' && this.state.dob !== '' && this.state.gender && this.state.interests.length > 0 && this.state.introduction !== '') {
+            if (this.showError() === true && this.state.name !== '' && this.state.dob !== '' && this.state.gender !== '' && this.state.interests.length > 0 && this.state.introduction !== '') {
                 await axios.post(baseURL + '/usernames', newUsername)
                 // newUsername._id = response.data._id
                 let clone = [...this.state.username]
