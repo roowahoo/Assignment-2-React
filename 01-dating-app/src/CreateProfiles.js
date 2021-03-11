@@ -4,7 +4,7 @@ import axios from 'axios'
 const baseURL = 'https://3001-white-impala-sa4c1pjn.ws-us03.gitpod.io'
 
 
-export default class Profiles extends React.Component {
+export default class CreateProfiles extends React.Component {
     state = {
         profiles: [],
         name: '',
