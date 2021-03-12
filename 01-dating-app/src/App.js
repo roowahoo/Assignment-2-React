@@ -46,8 +46,7 @@ export default class App extends React.Component {
                 <div className="App">
                     <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href='#' >Home</a>
-                        <div class="collapse navbar-collapse" id="navbarNav">
+                        
                             <ul class="navbar-nav">
                                 <li class="nav-item">
                                     <a class="nav-link active" onClick={this.createLink}>Create Profile</a>
@@ -59,7 +58,7 @@ export default class App extends React.Component {
                                     <a class="nav-link">Conversations</a>
                                 </li>
                             </ul>
-                        </div>
+                        
                     </div>
                 </nav>
                     {this.state.createProfiles && <CreateProfiles />}

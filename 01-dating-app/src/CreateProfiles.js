@@ -182,7 +182,7 @@ export default class CreateProfiles extends React.Component {
             name: this.state.name,
             gender: this.state.gender,
             age: this.getAge(this.state.dob),
-            interests: this.state.interests.join(', '),
+            interests: this.state.interests,
             introduction: this.state.introduction
         }
 

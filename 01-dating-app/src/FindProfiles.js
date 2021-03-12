@@ -8,9 +8,11 @@ export default class FindProfiles extends React.Component {
     state = {
         profiles: [],
         gender: '',
+        age: '',
         interests: [],
-        byGender:false,
-        byAge:false
+        byGender: false,
+        byAge: false,
+        byInterests: false
     }
 
     async componentDidMount() {
@@ -38,39 +40,53 @@ export default class FindProfiles extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <button className='btn btn-secondary' onClick={this.byGender}>Gender</button>
-                <button className='btn btn-secondary m-1' style={{display:this.state.byGender?'block':'none'}} value='male' name='gender' onClick={this.updateFormFields}>Male</button>
-                <button className='btn btn-secondary m-1' style={{display:this.state.byGender?'block':'none'}} value='female' name='gender' onClick={this.updateFormFields}>Female</button>
-                <button className='btn btn-secondary m-1' onClick={this.byAge}>Age</button>
-                <div>
-                    <div className='m-3 text-left'>
-                        <div className='m-3'>
-                            <label className='form-label'>Interests</label>
-                            <div className='form-check'>
-                                <input className='form-check-input' type='checkbox' name='interests' value='sports' onChange={this.updateInterests} />
-                                <label className='form-check-label'>Sports</label>
-                            </div>
-                            <div className='form-check'>
-                                <input className='form-check-input' type='checkbox' name='interests' value='arts' onChange={this.updateInterests} />
-                                <label className='form-check-label'>Arts</label>
-                            </div>
-                            <div className='form-check'>
-                                <input className='form-check-input' type='checkbox' name='interests' value='food' onChange={this.updateInterests} />
-                                <label className='form-check-label'>Food</label>
-                            </div>
-                            <div className='form-check'>
-                                <input className='form-check-input' type='checkbox' name='interests' value='travel' onChange={this.updateInterests} />
-                                <label className='form-check-label'>Travel</label>
-                            </div>
-                            <div className='form-check'>
-                                <input className='form-check-input' type='checkbox' name='interests' value='education' onChange={this.updateInterests} />
-                                <label className='form-check-label'>Education</label>
+                <div className='row'>
+                    <div className='col-3'>
+                        <button className='btn btn-secondary' onClick={this.byGender}>Gender</button>
+                        <button className='btn btn-secondary m-1' style={{ display: this.state.byGender ? 'block' : 'none' }} value='male' name='gender' onClick={this.updateFormFields}>Male</button>
+                        <button className='btn btn-secondary m-1' style={{ display: this.state.byGender ? 'block' : 'none' }} value='female' name='gender' onClick={this.updateFormFields}>Female</button>
+                    </div>
+                    <div className='col-3'>
+                        <button className='btn btn-secondary m-1' onClick={this.byAge}>Age</button>
+                        <button className='btn btn-secondary m-1' style={{ display: this.state.byAge ? 'block' : 'none' }} value='20' name='age' onClick={this.updateFormFields}>20s</button>
+                        <button className='btn btn-secondary m-1' style={{ display: this.state.byAge ? 'block' : 'none' }} value='30' name='age' onClick={this.updateFormFields}>30s</button>
+
+                    </div>
+
+                    <div className='row'>
+                        {/* <div className='m-3 text-left'> */}
+                        <div className='col-3'>
+                            <button className='btn btn-secondary' onClick={this.byInterest}>Interests</button>
+                            <div style={{ display: this.state.byInterest ? 'block' : 'none' }}>
+                                <div className='form-check'>
+                                    <input className='form-check-input' type='checkbox' name='interests' value='sports' onChange={this.updateInterests} />
+                                    <label className='form-check-label'>Sports</label>
+                                </div>
+                                <div className='form-check'>
+                                    <input className='form-check-input' type='checkbox' name='interests' value='arts' onChange={this.updateInterests} />
+                                    <label className='form-check-label'>Arts</label>
+                                </div>
+                                <div className='form-check'>
+                                    <input className='form-check-input' type='checkbox' name='interests' value='food' onChange={this.updateInterests} />
+                                    <label className='form-check-label'>Food</label>
+                                </div>
+                                <div className='form-check'>
+                                    <input className='form-check-input' type='checkbox' name='interests' value='travel' onChange={this.updateInterests} />
+                                    <label className='form-check-label'>Travel</label>
+                                </div>
+                                <div className='form-check'>
+                                    <input className='form-check-input' type='checkbox' name='interests' value='education' onChange={this.updateInterests} />
+                                    <label className='form-check-label'>Education</label>
+                                </div>
                             </div>
                         </div>
 
-                        <button className='btn btn-primary m-3 px-5' onClick={this.searchProfile}>Search</button>
+                        {/* </div> */}
+
                     </div>
+
                 </div>
+                <button className='btn btn-primary m-3 px-5' onClick={this.searchProfile}>Search</button>
 
                 <div id='profiles' className='m-3'>
                     <h1>Profiles</h1>
@@ -81,10 +97,27 @@ export default class FindProfiles extends React.Component {
         )
     }
 
-    byGender=event=>{
+    byGender = event => {
         this.setState({
-            byGender:true,
-            byAge:false
+            byGender: true,
+            byAge: false,
+            byInterest:false
+        })
+    }
+
+    byAge = event => {
+        this.setState({
+            byAge: true,
+            byGender: false,
+            byInterest:false
+        })
+    }
+
+    byInterest=event=>{
+        this.setState({
+            byInterest:true,
+            byAge:false,
+            byGender:false
         })
     }
     updateFormFields = event => {
@@ -114,7 +147,8 @@ export default class FindProfiles extends React.Component {
     searchProfile = async event => {
         let searchValue = {
             gender: this.state.gender,
-            interests: this.state.interests
+            interests: this.state.interests,
+            age: this.state.age
 
         }
         if (this.state.interests.length === 0) {
@@ -128,6 +162,13 @@ export default class FindProfiles extends React.Component {
         }
         if (this.state.gender === '') {
             let response = await axios.post(baseURL + '/searchbyinterests', searchValue)
+            console.log(response)
+            this.setState({
+                profiles: response.data
+            })
+        }
+        if (this.state.age !== '') {
+            let response = await axios.post(baseURL + '/searchbyage', searchValue)
             console.log(response)
             this.setState({
                 profiles: response.data
