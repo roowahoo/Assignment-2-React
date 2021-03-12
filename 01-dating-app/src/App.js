@@ -4,11 +4,13 @@ import CreateProfiles from './CreateProfiles'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import NavBar from './NavBar'
 import FindProfiles from './FindProfiles'
+import Conversations from './Conversations'
 
 export default class App extends React.Component {
     state = {
         createProfiles: true,
-        findProfiles: false
+        findProfiles: false,
+        Conversations:false
     }
 
     // changePage = () => {
@@ -30,7 +32,7 @@ export default class App extends React.Component {
             createProfiles: false,
             findProfiles: true
         })
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
     }
 
     createLink = () => {
@@ -38,15 +40,24 @@ export default class App extends React.Component {
             createProfiles: true,
             findProfiles: false
         })
-         window.scrollTo(0,0);
+        window.scrollTo(0, 0);
+    }
+
+    conversationsLink=()=>{
+        this.setState({
+            conversations:true,
+            createProfiles: false,
+            findProfiles: false
+
+        })
     }
     render() {
         return (
             <React.Fragment>
                 <div className="App">
                     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <div class="container-fluid">
-                        
+                        <div class="container-fluid">
+
                             <ul class="navbar-nav">
                                 <li class="nav-item">
                                     <a class="nav-link active" onClick={this.createLink}>Create Profile</a>
@@ -55,16 +66,17 @@ export default class App extends React.Component {
                                     <a class="nav-link" onClick={this.findLink} >Find Profiles</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link">Conversations</a>
+                                    <a class="nav-link" onClick={this.conversationsLink}>Conversations</a>
                                 </li>
                             </ul>
-                        
-                    </div>
-                </nav>
+
+                        </div>
+                    </nav>
                     {this.state.createProfiles && <CreateProfiles />}
                     {this.state.findProfiles && <FindProfiles />}
+                    {this.state.conversations && <Conversations/>}
                 </div>
-                
+
             </React.Fragment>
         );
     }

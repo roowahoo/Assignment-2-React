@@ -11,6 +11,11 @@
     padding:10px
 }
 
+.profiles{
+    border:1px solid gray;
+    margin:2px
+}
+
 @media (min-width:280px){
     #signup{
     border:1px solid gray;
