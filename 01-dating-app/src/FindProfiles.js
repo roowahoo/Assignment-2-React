@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 import Conversations from './Conversations'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 
 const baseURL = 'https://3001-white-impala-sa4c1pjn.ws-us03.gitpod.io'
 
@@ -16,11 +18,13 @@ export default class FindProfiles extends React.Component {
         byInterests: false,
         conversations: false,
         display: true,
-        user_id:'',
+        user_id: '',
         user2_id: '',
-        validate:false,
+        validate: false,
         username: '',
     }
+
+    
 
     async componentDidMount() {
         let response = await axios.get(baseURL + '/profiles')
@@ -48,6 +52,18 @@ export default class FindProfiles extends React.Component {
         return (
             <React.Fragment>
                 <div style={{ display: this.state.display ? 'block' : 'none' }}>
+                    {/* <ButtonDropdown isOpen={isOpen} toggle={toggle}>
+                        <DropdownToggle caret color="primary">
+                            Text
+  </DropdownToggle>
+                        <DropdownMenu>
+                            <DropdownItem header>Header</DropdownItem>
+                            <DropdownItem disabled>Action</DropdownItem>
+                            <DropdownItem>Another Action</DropdownItem>
+                            <DropdownItem divider />
+                            <DropdownItem>Another Action</DropdownItem>
+                        </DropdownMenu>
+                    </ButtonDropdown> */}
                     <div className='row'>
                         <div className='col-3'>
                             <button className='btn btn-secondary' onClick={this.byGender}>Gender</button>
@@ -101,7 +117,7 @@ export default class FindProfiles extends React.Component {
                         {this.renderProfiles()}
                     </div>
 
-                    <div id='popup' style={{display:this.state.validate?'block':'none'}}>
+                    <div id='popup' style={{ display: this.state.validate ? 'block' : 'none' }}>
                         <label className='form-label'>Username:</label>
                         <input className='form-text' type='text' name='username' value={this.state.username} onChange={this.updateFormFields}></input>
                         <button className='btn btn-primary' onClick={this.validate}>Submit</button>
@@ -198,40 +214,40 @@ export default class FindProfiles extends React.Component {
 
     connect = event => {
         this.setState({
-            validate:true,
+            validate: true,
             user2_id: event.target.name
         })
     }
 
-    validate=async event=>{
+    validate = async event => {
         let searchUserName = {
             username: this.state.username
         }
-        
-        let ifUserExists = await axios.post(baseURL+'/searchUsernames', searchUserName);
+
+        let ifUserExists = await axios.post(baseURL + '/searchUsernames', searchUserName);
         if (ifUserExists.data !== null) {
             console.log(ifUserExists.data)
-            
-          this.setState({
-              conversations: true,
-              display:false,
-              user_id:ifUserExists.data
-          })
 
-          let conversationUsers={
-            user_id:this.state.user_id,
-            user2_id:this.state.user2_id
+            this.setState({
+                conversations: true,
+                display: false,
+                user_id: ifUserExists.data
+            })
 
-        }
+            let conversationUsers = {
+                user_id: this.state.user_id,
+                user2_id: this.state.user2_id
 
-          await axios.post(baseURL+'/conversations', conversationUsers)
+            }
+
+            await axios.post(baseURL + '/conversations', conversationUsers)
 
 
-          
+
         } else {
             console.log(ifUserExists)
             alert('user not found')
-        } 
+        }
     }
 
 }

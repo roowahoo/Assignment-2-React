@@ -5,12 +5,14 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import NavBar from './NavBar'
 import FindProfiles from './FindProfiles'
 import Conversations from './Conversations'
+import MyProfile from './MyProfile'
 
 export default class App extends React.Component {
     state = {
         createProfiles: true,
         findProfiles: false,
-        Conversations:false
+        conversations:false,
+        myProfile:false
     }
 
     // changePage = () => {
@@ -51,6 +53,18 @@ export default class App extends React.Component {
 
         })
     }
+
+    myProfileLink=()=>{
+        this.setState({
+            myProfile:true,
+            conversations:false,
+            createProfiles: false,
+            findProfiles: false
+
+        })
+    }
+
+
     render() {
         return (
             <React.Fragment>
@@ -68,6 +82,9 @@ export default class App extends React.Component {
                                 <li class="nav-item">
                                     <a class="nav-link" onClick={this.conversationsLink}>Conversations</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" onClick={this.myProfileLink}>My Profile</a>
+                                </li>
                             </ul>
 
                         </div>
@@ -75,6 +92,7 @@ export default class App extends React.Component {
                     {this.state.createProfiles && <CreateProfiles />}
                     {this.state.findProfiles && <FindProfiles />}
                     {this.state.conversations && <Conversations/>}
+                    {this.state.myProfile && <MyProfile/>}
                 </div>
 
             </React.Fragment>

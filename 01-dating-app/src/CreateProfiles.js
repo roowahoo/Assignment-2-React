@@ -123,15 +123,6 @@ export default class CreateProfiles extends React.Component {
 
     }
 
-    // checkUserExists = (username) => {
-    //     let x = this.state.profiles.findIndex(u => u.username === username)
-    //     console.log(x)
-    //     if (x === -1) {
-    //         return true
-    //     } else {
-    //         return false
-    //     }
-    // }
 
     showError = () => {
         let char = ['!', '@', '#', '$', '%', '^', '&', '*']
@@ -145,8 +136,6 @@ export default class CreateProfiles extends React.Component {
         }
 
     }
-    // && this.checkUserExists(this.state.username)
-
 
     updateInterests = event => {
         if (this.state.interests.includes(event.target.value) === false) {
