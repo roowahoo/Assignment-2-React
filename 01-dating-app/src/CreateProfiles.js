@@ -171,6 +171,7 @@ export default class CreateProfiles extends React.Component {
             name: this.state.name,
             gender: this.state.gender,
             age: this.getAge(this.state.dob),
+            dob:this.state.dob,
             interests: this.state.interests,
             introduction: this.state.introduction
         }
@@ -201,7 +202,6 @@ export default class CreateProfiles extends React.Component {
 
             if (this.showError() === true && this.state.name !== '' && this.state.dob !== '' && this.state.gender !== '' && this.state.interests.length > 0 && this.state.introduction !== '') {
                 await axios.post(baseURL + '/usernames', newUsername)
-                // newUsername._id = response.data._id
                 let clone = [...this.state.username]
                 clone.push(newUsername)
                 this.setState({
