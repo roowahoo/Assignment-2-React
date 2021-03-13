@@ -12,8 +12,9 @@ export default class MyProfile extends React.Component {
         editedName: '',
         editedUsername: '',
         editedGender: '',
+        editedAge: '',
         editedDob: '',
-        editedInterests: '',
+        editedInterests: [],
         editedIntroduction: ''
 
     }
@@ -36,7 +37,7 @@ export default class MyProfile extends React.Component {
                         <label className='form-label'>Username</label>
                         <div className='input-group text-left'>
                             <span className="input-group-text">@</span>
-                            <input className="form-control" type="text" name='editedUsername' value={this.state.editedUsername} onChange={this.updateFormFields} />
+                            <input className="form-control" type="text" name='username' value={this.state.username} onChange={this.updateFormFields} />
                             <div id='username'>Your username is confidential and must be more than 4 characters long and include at least 1 special character.</div>
                             <span style={{ display: this.showError() ? 'none' : 'block' }} className='error'>Please enter a valid username</span>
                             {/* <span style={{ display: this.state.errorMessage ? 'block' : 'none' }} className='error'>Username has been taken</span> */}
@@ -86,10 +87,10 @@ export default class MyProfile extends React.Component {
 
                     <div className='m-3 text-left'>
                         <label className='form-label'>About Me</label>
-                        <textarea className="form-control" type="text" name='introduction' value={this.state.profile.introduction} onChange={this.updateFormFields}></textarea>
+                        <textarea className="form-control" type="text" name='editedIntroduction' value={this.state.editedIntroduction} onChange={this.updateFormFields}></textarea>
                     </div>
                     <div className='d-flex justify-content-end'>
-                        <button className='btn btn-primary m-3 px-5' onClick={this.EditProfile}>Edit</button>
+                        <button className='btn btn-primary m-3 px-5' onClick={this.editProfile}>Confirm</button>
                     </div>
                 </div>
 
@@ -104,6 +105,16 @@ export default class MyProfile extends React.Component {
         this.setState({
             [event.target.name]: event.target.value
         })
+
+    }
+
+    getAge = (date) => {
+        let dob = new Date(date)
+        let diff = Date.now() - dob.getTime()
+        let dateDiff = new Date(diff)
+        let year = dateDiff.getUTCFullYear()
+        let age = Math.abs(year - 1970)
+        return age
 
     }
 
@@ -131,6 +142,7 @@ export default class MyProfile extends React.Component {
                 editedName: userProfile.data.name,
                 editedUsername: userProfile.data.username,
                 editedGender: userProfile.data.gender,
+                // editedAge:userProfile.data.age,
                 editedDob: userProfile.data.dob,
                 editedInterests: userProfile.data.interests,
                 editedIntroduction: userProfile.data.introduction,
@@ -160,31 +172,45 @@ export default class MyProfile extends React.Component {
     }
 
     updateInterests = event => {
-        if (this.state.interests.includes(event.target.value) === false) {
-            let clonedArray = [...this.state.interests]
+        if (this.state.editedInterests.includes(event.target.value) === false) {
+            let clonedArray = [...this.state.editedInterests]
             clonedArray.push(event.target.value)
             this.setState({
-                interests: clonedArray
+                editedInterests: clonedArray
             })
         } else {
-            let clonedArray = [...this.state.interests]
+            let clonedArray = [...this.state.editedInterests]
             clonedArray = clonedArray.filter(item => item !== event.target.value)
             this.setState({
-                interests: clonedArray
+                editedInterests: clonedArray
             })
         }
 
     }
 
-    getAge = (date) => {
-        let dob = new Date(date)
-        let diff = Date.now() - dob.getTime()
-        let dateDiff = new Date(diff)
-        let year = dateDiff.getUTCFullYear()
-        let age = Math.abs(year - 1970)
-        return age
+    editProfile = event => {
+        let newProfile = {
+            user_id: this.state.user_id,
+            name: this.state.editedName,
+            gender: this.state.editedGender,
+            age: this.getAge(this.state.editedDob),
+            dob: this.state.editedDob,
+            interests: this.state.editedInterests,
+            introduction: this.state.editedIntroduction,
+        }
+
+        axios.put(baseURL+'/editProfile',{...newProfile})
+
+        let newUsername={
+            user_id:this.state.user_id,
+            username:this.state.username
+        }
+        axios.put(baseURL+'/editUsername',{...newUsername})
+        
 
     }
+
+
 
     // renderProfile=()=>{
     //     let acc = []
