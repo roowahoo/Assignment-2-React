@@ -33,16 +33,16 @@ export default class MyProfile extends React.Component {
                         <input className="form-control" type="text" name='editedName' value={this.state.editedName} onChange={this.updateFormFields} />
                     </div>
 
-                    <div className='m-3 text-left'>
+                    {/* <div className='m-3 text-left'>
                         <label className='form-label'>Username</label>
                         <div className='input-group text-left'>
                             <span className="input-group-text">@</span>
-                            <input className="form-control" type="text" name='username' value={this.state.username} onChange={this.updateFormFields} />
-                            <div id='username'>Your username is confidential and must be more than 4 characters long and include at least 1 special character.</div>
+                            <input className="form-control" type="text" name='username' value={this.state.username}/>
+                            <div id='username'>Username cannot be changed</div>
                             <span style={{ display: this.showError() ? 'none' : 'block' }} className='error'>Please enter a valid username</span>
-                            {/* <span style={{ display: this.state.errorMessage ? 'block' : 'none' }} className='error'>Username has been taken</span> */}
+                            <span style={{ display: this.state.errorMessage ? 'block' : 'none' }} className='error'>Username has been taken</span>
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className='m-3 text-left'>
                         <label className='form-label'>Gender</label>
@@ -89,14 +89,13 @@ export default class MyProfile extends React.Component {
                         <label className='form-label'>About Me</label>
                         <textarea className="form-control" type="text" name='editedIntroduction' value={this.state.editedIntroduction} onChange={this.updateFormFields}></textarea>
                     </div>
-                    <div className='d-flex justify-content-end'>
+                    <div className='d-flex justify-content-between'>
                         <button className='btn btn-primary m-3 px-5' onClick={this.editProfile}>Confirm</button>
+                        <button className='btn btn-danger m-3 px-5' onClick={this.deleteProfile}>Delete</button>
                     </div>
+                    
                 </div>
 
-                <div id='profiles' className='m-3'>
-
-                </div>
             </React.Fragment>
         )
     }
@@ -149,27 +148,24 @@ export default class MyProfile extends React.Component {
                 validate: false
             })
 
-
-
-
         } else {
             console.log(ifUserExists)
             alert('user not found')
         }
     }
 
-    showError = () => {
-        let char = ['!', '@', '#', '$', '%', '^', '&', '*']
-        for (let x of char) {
-            if (this.state.username.includes(x) && this.state.username.length > 4) {
-                return true
-            } else {
-                continue
-            }
+    // showError = () => {
+    //     let char = ['!', '@', '#', '$', '%', '^', '&', '*']
+    //     for (let x of char) {
+    //         if (this.state.username.includes(x) && this.state.username.length > 4) {
+    //             return true
+    //         } else {
+    //             continue
+    //         }
 
-        }
+    //     }
 
-    }
+    // }
 
     updateInterests = event => {
         if (this.state.editedInterests.includes(event.target.value) === false) {
@@ -199,30 +195,25 @@ export default class MyProfile extends React.Component {
             introduction: this.state.editedIntroduction,
         }
 
-        axios.put(baseURL+'/editProfile',{...newProfile})
+        axios.put(baseURL + '/editProfile', { ...newProfile })
+        alert('Profile updated')
 
-        let newUsername={
-            user_id:this.state.user_id,
-            username:this.state.username
-        }
-        axios.put(baseURL+'/editUsername',{...newUsername})
-        
+        // let newUsername = {
+        //     user_id: this.state.user_id,
+        //     username: this.state.username
+        // }
+        // axios.put(baseURL + '/editUsername', { ...newUsername })
+
 
     }
 
+    deleteProfile=event=>{
+        let profileToDelete={
+            user_id:this.state.user_id,
+        }
 
+        axios.delete(baseURL+'/deleteProfile',profileToDelete)
+        axios.delete(baseURL+'/deleteUsername',profileToDelete)
 
-    // renderProfile=()=>{
-    //     let acc = []
-    //         acc.push(
-    //             <div key={this.state.profile._id} className='profiles'>
-    //                 <h5>{this.state.profile.name}, {this.state.profile.age}</h5>
-    //                 <p>Interests: {this.state.profile.interests.join(', ')}</p>
-    //                 <p>About: {this.state.profile.introduction}</p>
-    //                 <button name={this.state.profile._id} className='btn btn-primary' onClick={this.connect}>Connect</button>
-    //             </div>
-    //         )
-
-    //     return acc
-    // }
+    }
 }
