@@ -141,7 +141,6 @@ export default class MyProfile extends React.Component {
                 editedName: userProfile.data.name,
                 editedUsername: userProfile.data.username,
                 editedGender: userProfile.data.gender,
-                // editedAge:userProfile.data.age,
                 editedDob: userProfile.data.dob,
                 editedInterests: userProfile.data.interests,
                 editedIntroduction: userProfile.data.introduction,
@@ -207,13 +206,16 @@ export default class MyProfile extends React.Component {
 
     }
 
-    deleteProfile=event=>{
+    deleteProfile= event=>{
         let profileToDelete={
             user_id:this.state.user_id,
         }
+        
 
-        axios.delete(baseURL+'/deleteProfile',profileToDelete)
-        axios.delete(baseURL+'/deleteUsername',profileToDelete)
+        let response=axios.delete(baseURL+'/deleteProfile' , {...profileToDelete})
+        console.log(profileToDelete)
+        console.log(response)
+        // axios.delete(baseURL+'/deleteUsername',{...profileToDelete})
 
     }
 }

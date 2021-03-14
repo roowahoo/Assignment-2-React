@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import Conversations from './Conversations'
+import MessageDisplay from './MessageDisplay'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 
@@ -22,6 +23,8 @@ export default class FindProfiles extends React.Component {
         user2_id: '',
         validate: false,
         username: '',
+        conversationId:'',
+        message:''
     }
 
     
@@ -124,7 +127,17 @@ export default class FindProfiles extends React.Component {
                     </div>
                 </div>
 
-                {this.state.conversations && <Conversations user2={this.state.user2_id} />}
+                <div style={{display:this.state.conversations?'block':'none'}}>
+                    {/* <Conversations conversationId={this.state.conversationId} message={this.state.message} /> */}
+                    <input type='text' name='message' value={this.state.message} onChange={this.updateFormFields}></input>
+                    <button className='btn btn-primary' onClick={this.send}>Send</button>
+                    {/* <MessageDisplay message={this.state.message} updateForm={this.updateFormFields}/> */}
+
+                </div>
+
+            
+                
+
 
 
             </React.Fragment>
@@ -224,8 +237,9 @@ export default class FindProfiles extends React.Component {
             username: this.state.username
         }
 
+        let conversationId;
         let ifUserExists = await axios.post(baseURL + '/searchUsernames', searchUserName);
-        if (ifUserExists.data !== null) {
+        if (ifUserExists.data !== 'no username found') {
             console.log(ifUserExists.data)
 
             this.setState({
@@ -240,14 +254,27 @@ export default class FindProfiles extends React.Component {
 
             }
 
-            await axios.post(baseURL + '/conversations', conversationUsers)
+            let response=await axios.post(baseURL + '/conversations', conversationUsers)
+            console.log(response)
+            conversationId=response.data.insertedId
+            this.setState({
+                conversationId:conversationId
+            })
 
 
 
         } else {
-            console.log(ifUserExists)
+            console.log(ifUserExists.data)
             alert('user not found')
         }
+    }
+
+    send=async event=>{
+        let newMessage={
+            conversationId:this.state.conversationId,
+            message:this.state.message
+        }
+        await axios.put(baseURL+'/conversations',{...newMessage})
     }
 
 }
