@@ -16,6 +16,15 @@
     margin:2px
 }
 
+.cursor{
+    cursor:pointer
+}
+
+#popup{
+    position:absolute;
+    border:1px solid gray
+}
+
 @media (min-width:280px){
     #signup{
     border:1px solid gray;

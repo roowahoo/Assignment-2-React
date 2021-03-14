@@ -1,7 +1,6 @@
 import React from 'react'
 import axios from 'axios'
 import Conversations from './Conversations'
-import MessageDisplay from './MessageDisplay'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 
@@ -68,11 +67,16 @@ export default class FindProfiles extends React.Component {
                         </DropdownMenu>
                     </ButtonDropdown> */}
                     <div className='row'>
-                        <div className='col-3'>
+                        <select>
+                            <option onClick={this.byGender}>--Gender--</option>
+                            <option style={{ display: this.state.byGender ? 'block' : 'none' }} value='male' name='gender' onClick={this.updateFormFields}>Male</option>
+                            <option style={{ display: this.state.byGender ? 'block' : 'none' }} value='female' name='gender' onClick={this.updateFormFields}>Female</option>
+                        </select>
+                        {/* <div className='col-3'>
                             <button className='btn btn-secondary' onClick={this.byGender}>Gender</button>
                             <button className='btn btn-secondary m-1' style={{ display: this.state.byGender ? 'block' : 'none' }} value='male' name='gender' onClick={this.updateFormFields}>Male</button>
                             <button className='btn btn-secondary m-1' style={{ display: this.state.byGender ? 'block' : 'none' }} value='female' name='gender' onClick={this.updateFormFields}>Female</button>
-                        </div>
+                        </div> */}
                         <div className='col-3'>
                             <button className='btn btn-secondary m-1' onClick={this.byAge}>Age</button>
                             <button className='btn btn-secondary m-1' style={{ display: this.state.byAge ? 'block' : 'none' }} value='20' name='age' onClick={this.updateFormFields}>20s</button>
@@ -131,14 +135,8 @@ export default class FindProfiles extends React.Component {
                     {/* <Conversations conversationId={this.state.conversationId} message={this.state.message} /> */}
                     <input type='text' name='message' value={this.state.message} onChange={this.updateFormFields}></input>
                     <button className='btn btn-primary' onClick={this.send}>Send</button>
-                    {/* <MessageDisplay message={this.state.message} updateForm={this.updateFormFields}/> */}
 
                 </div>
-
-            
-                
-
-
 
             </React.Fragment>
         )

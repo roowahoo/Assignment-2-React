@@ -1,6 +1,5 @@
 import React from 'react'
 import axios from 'axios'
-import MessageDisplay from './MessageDisplay'
 
 const baseURL = 'https://3001-white-impala-sa4c1pjn.ws-us03.gitpod.io'
 
@@ -35,8 +34,7 @@ export default class Conversations extends React.Component {
             this.setState({
                 conversations: foundConversations.data
             })
-
-
+            console.log(foundConversations.data)
 
         } else {
             alert('user not found')
@@ -44,31 +42,28 @@ export default class Conversations extends React.Component {
     }
 
     renderConversations = () => {
-        let acc = []
-        for (let eachConversation of this.state.conversations) {
-            acc.push(
-                <div key={eachConversation._id} className='conversation'>
-                    <p>{eachConversation.messages}</p>
-                    <button name={eachConversation._id} className='btn btn-primary' onClick={this.send}>Send</button>
-                </div>
-            )
-        }
-        return acc
+        return (
+            <div>
+                {this.state.conversations.map(item=>(
+                <li>{item._id}</li>
+        ))}
+            </div>
+        )
     }
 
 
     render() {
         return (
             <React.Fragment>
-                <h1>here</h1>
-                <div id='popup' style={{ display: this.state.validate ? 'block' : 'none' }}>
+                <div style={{ display: this.state.validate ? 'block' : 'none' }}>
                     <label className='form-label'>Username:</label>
                     <input className='form-text' type='text' name='username' value={this.state.username} onChange={this.updateFormFields}></input>
                     <button className='btn btn-primary' onClick={this.validate}>Submit</button>
                 </div>
-                <div style={{display:this.state.validate ? 'none':'block'}}>
+                <div style={{ display: this.state.validate ? 'none' : 'block' }}>
                     <h1>Conversations</h1>
-                    {this.renderConversations()}
+                    {console.log(this.state.conversations)}
+                    {/* {this.renderConversations()} */}
                 </div>
 
             </React.Fragment>
@@ -83,14 +78,14 @@ export default class Conversations extends React.Component {
 
     }
 
-    
 
-    send=async event=>{
-        let newMessage={
-            conversationId:event.target.name,
-            message:this.state.message
+
+    send = async event => {
+        let newMessage = {
+            conversationId: event.target.name,
+            message: this.state.message
         }
-        await axios.put(baseURL+'/conversations',{...newMessage})
+        await axios.put(baseURL + '/conversations', { ...newMessage })
     }
 
 

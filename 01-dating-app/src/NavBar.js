@@ -5,22 +5,23 @@ export default class NavBar extends React.Component {
         return (
             <React.Fragment>
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <div class="container-fluid">
-                        
+                        <div class="container-fluid">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href='#' >Create Profile</a>
+                                    <a className="nav-link cursor" onClick={this.createLink}>Create Profile</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href='#' >Find Profiles</a>
+                                    <a className="nav-link cursor" onClick={this.findLink} >Find Profiles</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link">Conversations</a>
+                                    <a className="nav-link cursor" onClick={this.conversationsLink}>Conversations</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a className="nav-link cursor" onClick={this.myProfileLink}>My Profile</a>
                                 </li>
                             </ul>
-                        
-                    </div>
-                </nav>
+                        </div>
+                    </nav>
             </React.Fragment>
         )
     }
