@@ -58,13 +58,13 @@ export default class App extends React.Component {
         return (
             <React.Fragment>
                 <div className="App">
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                        <div class="container-fluid">
-                            <ul class="navbar-nav">
-                                <li class="nav-item">
+                    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                        <div className="container-fluid">
+                            <ul className="navbar-nav">
+                                <li className="nav-item">
                                     <a className="nav-link cursor" onClick={this.createLink}>Create Profile</a>
                                 </li>
-                                <li class="nav-item">
+                                <li className="nav-item">
                                     <a className="nav-link cursor" onClick={this.findLink} >Find Profiles</a>
                                 </li>
                                 <li class="nav-item">

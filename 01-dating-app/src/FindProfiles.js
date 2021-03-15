@@ -39,7 +39,9 @@ export default class FindProfiles extends React.Component {
         let acc = []
         for (let eachProfile of this.state.profiles) {
             acc.push(
+                
                 <div key={eachProfile._id} className='profiles'>
+                    <img src={eachProfile.image}/>
                     <h5>{eachProfile.name}, {eachProfile.age}</h5>
                     <p>Interests: {eachProfile.interests.join(', ')}</p>
                     <p>About: {eachProfile.introduction}</p>
@@ -67,16 +69,11 @@ export default class FindProfiles extends React.Component {
                         </DropdownMenu>
                     </ButtonDropdown> */}
                     <div className='row'>
-                        <select>
-                            <option onClick={this.byGender}>--Gender--</option>
-                            <option style={{ display: this.state.byGender ? 'block' : 'none' }} value='male' name='gender' onClick={this.updateFormFields}>Male</option>
-                            <option style={{ display: this.state.byGender ? 'block' : 'none' }} value='female' name='gender' onClick={this.updateFormFields}>Female</option>
-                        </select>
-                        {/* <div className='col-3'>
+                        <div className='col-3'>
                             <button className='btn btn-secondary' onClick={this.byGender}>Gender</button>
                             <button className='btn btn-secondary m-1' style={{ display: this.state.byGender ? 'block' : 'none' }} value='male' name='gender' onClick={this.updateFormFields}>Male</button>
                             <button className='btn btn-secondary m-1' style={{ display: this.state.byGender ? 'block' : 'none' }} value='female' name='gender' onClick={this.updateFormFields}>Female</button>
-                        </div> */}
+                        </div>
                         <div className='col-3'>
                             <button className='btn btn-secondary m-1' onClick={this.byAge}>Age</button>
                             <button className='btn btn-secondary m-1' style={{ display: this.state.byAge ? 'block' : 'none' }} value='20' name='age' onClick={this.updateFormFields}>20s</button>
@@ -119,8 +116,7 @@ export default class FindProfiles extends React.Component {
                     </div>
                     <button className='btn btn-primary m-3 px-5' onClick={this.searchProfile}>Search</button>
 
-                    <div id='profiles' className='m-3'>
-                        <h1>Profiles</h1>
+                    <div >
                         {this.renderProfiles()}
                     </div>
 

@@ -212,10 +212,13 @@ export default class MyProfile extends React.Component {
         }
         
 
-        let response=axios.delete(baseURL+'/deleteProfile' , {...profileToDelete})
-        console.log(profileToDelete)
+        // let response=axios.delete(baseURL+'/deleteProfile', {profileToDelete})
+        let response=axios.delete(baseURL+'/deleteProfile/' + this.state.user_id)
+
+        // console.log(profileToDelete)
         console.log(response)
-        // axios.delete(baseURL+'/deleteUsername',{...profileToDelete})
+        axios.delete(baseURL+'/deleteUsername/'+ this.state.user_id)
+        window.location = '/'
 
     }
 }

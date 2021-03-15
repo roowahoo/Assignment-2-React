@@ -41,7 +41,6 @@ export default class CreateProfiles extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <h1>Create Profile</h1>
                 <div id='signup'>
                     <div className='m-3 text-left'>
                         <label className='form-label'>Name</label>
