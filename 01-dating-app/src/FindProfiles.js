@@ -22,11 +22,11 @@ export default class FindProfiles extends React.Component {
         user2_id: '',
         validate: false,
         username: '',
-        conversationId:'',
-        message:''
+        conversationId: '',
+        message: ''
     }
 
-    
+
 
     async componentDidMount() {
         let response = await axios.get(baseURL + '/profiles')
@@ -39,18 +39,24 @@ export default class FindProfiles extends React.Component {
         let acc = []
         for (let eachProfile of this.state.profiles) {
             acc.push(
-                
-                <div key={eachProfile._id} className='profiles'>
-                    <img src={eachProfile.image}/>
-                    <h5>{eachProfile.name}, {eachProfile.age}</h5>
-                    <p>Interests: {eachProfile.interests.join(', ')}</p>
-                    <p>About: {eachProfile.introduction}</p>
-                    <button name={eachProfile._id} className='btn btn-primary' onClick={this.connect}>Connect</button>
+                <div key={eachProfile._id} className="card">
+                    <img src={eachProfile.image} className="card-img-top" alt="..." />
+                    <div className="card-body">
+                        <h5 className="card-title">{eachProfile.name}, {eachProfile.age}</h5>
+                        <p className="card-text">{eachProfile.introduction}</p>
+                    </div>
                 </div>
             )
         }
         return acc
     }
+    // <div key={eachProfile._id} className='profiles'>
+    //     <img src={eachProfile.image}/>
+    //     <h5>{eachProfile.name}, {eachProfile.age}</h5>
+    //     <p>Interests: {eachProfile.interests.join(', ')}</p>
+    //     <p>About: {eachProfile.introduction}</p>
+    //     <button name={eachProfile._id} className='btn btn-primary' onClick={this.connect}>Connect</button>
+    // </div>
 
     render() {
         return (
@@ -127,7 +133,7 @@ export default class FindProfiles extends React.Component {
                     </div>
                 </div>
 
-                <div style={{display:this.state.conversations?'block':'none'}}>
+                <div style={{ display: this.state.conversations ? 'block' : 'none' }}>
                     {/* <Conversations conversationId={this.state.conversationId} message={this.state.message} /> */}
                     <input type='text' name='message' value={this.state.message} onChange={this.updateFormFields}></input>
                     <button className='btn btn-primary' onClick={this.send}>Send</button>
@@ -248,11 +254,11 @@ export default class FindProfiles extends React.Component {
 
             }
 
-            let response=await axios.post(baseURL + '/conversations', conversationUsers)
+            let response = await axios.post(baseURL + '/conversations', conversationUsers)
             console.log(response)
-            conversationId=response.data.insertedId
+            conversationId = response.data.insertedId
             this.setState({
-                conversationId:conversationId
+                conversationId: conversationId
             })
 
 
@@ -263,12 +269,12 @@ export default class FindProfiles extends React.Component {
         }
     }
 
-    send=async event=>{
-        let newMessage={
-            conversationId:this.state.conversationId,
-            message:this.state.message
+    send = async event => {
+        let newMessage = {
+            conversationId: this.state.conversationId,
+            message: this.state.message
         }
-        await axios.put(baseURL+'/conversations',{...newMessage})
+        await axios.put(baseURL + '/conversations', { ...newMessage })
     }
 
 }

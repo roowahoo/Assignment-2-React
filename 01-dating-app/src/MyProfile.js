@@ -15,7 +15,8 @@ export default class MyProfile extends React.Component {
         editedAge: '',
         editedDob: '',
         editedInterests: [],
-        editedIntroduction: ''
+        editedIntroduction: '',
+        editedImage:''
 
     }
     render() {
@@ -89,6 +90,10 @@ export default class MyProfile extends React.Component {
                         <label className='form-label'>About Me</label>
                         <textarea className="form-control" type="text" name='editedIntroduction' value={this.state.editedIntroduction} onChange={this.updateFormFields}></textarea>
                     </div>
+                    <div className='m-3 text-left'>
+                        <label className='form-label'>Photo</label>
+                        <input className="form-control" type="text" name='editedImage' value={this.state.editedImage} onChange={this.updateFormFields} placeholder='Insert image URL here' ></input>
+                    </div>
                     <div className='d-flex justify-content-between'>
                         <button className='btn btn-primary m-3 px-5' onClick={this.editProfile}>Confirm</button>
                         <button className='btn btn-danger m-3 px-5' onClick={this.deleteProfile}>Delete</button>
@@ -144,6 +149,7 @@ export default class MyProfile extends React.Component {
                 editedDob: userProfile.data.dob,
                 editedInterests: userProfile.data.interests,
                 editedIntroduction: userProfile.data.introduction,
+                editedImage:userProfile.data.image,
                 validate: false
             })
 
@@ -207,15 +213,10 @@ export default class MyProfile extends React.Component {
     }
 
     deleteProfile= event=>{
-        let profileToDelete={
-            user_id:this.state.user_id,
-        }
         
-
-        // let response=axios.delete(baseURL+'/deleteProfile', {profileToDelete})
         let response=axios.delete(baseURL+'/deleteProfile/' + this.state.user_id)
 
-        // console.log(profileToDelete)
+        
         console.log(response)
         axios.delete(baseURL+'/deleteUsername/'+ this.state.user_id)
         window.location = '/'

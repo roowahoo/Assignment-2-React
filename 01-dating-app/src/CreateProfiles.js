@@ -14,6 +14,7 @@ export default class CreateProfiles extends React.Component {
         gender: '',
         interests: [],
         introduction: '',
+        image_url:'',
         errorMessage: false
 
     }
@@ -29,6 +30,7 @@ export default class CreateProfiles extends React.Component {
         for (let eachProfile of this.state.profiles) {
             acc.push(
                 <div key={eachProfile._id} className='profiles'>
+                    <img src={eachProfile.image}/>
                     <h5>{eachProfile.name}, {eachProfile.age}</h5>
                     <p>Interests: {eachProfile.interests}</p>
                     <p>About: {eachProfile.introduction}</p>
@@ -103,6 +105,10 @@ export default class CreateProfiles extends React.Component {
                         <label className='form-label'>About Me</label>
                         <textarea className="form-control" type="text" name='introduction' value={this.state.introduction} onChange={this.updateFormFields}></textarea>
                     </div>
+                    <div className='m-3 text-left'>
+                        <label className='form-label'>Photo</label>
+                        <input className="form-control" type="text" name='image_url' value={this.state.image_url} onChange={this.updateFormFields} placeholder='Insert image URL here' ></input>
+                    </div>
                     <div className='d-flex justify-content-end'>
                         <button className='btn btn-primary m-3 px-5' onClick={this.createProfile}>Submit</button>
                     </div>
@@ -172,7 +178,8 @@ export default class CreateProfiles extends React.Component {
             age: this.getAge(this.state.dob),
             dob:this.state.dob,
             interests: this.state.interests,
-            introduction: this.state.introduction
+            introduction: this.state.introduction,
+            image_url:this.state.image_url
         }
 
 
