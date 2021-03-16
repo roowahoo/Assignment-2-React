@@ -43,7 +43,9 @@ export default class FindProfiles extends React.Component {
                     <img src={eachProfile.image} className="card-img-top" alt="..." />
                     <div className="card-body">
                         <h5 className="card-title">{eachProfile.name}, {eachProfile.age}</h5>
+                        <p>Interests: {eachProfile.interests.join(', ')}</p>
                         <p className="card-text">{eachProfile.introduction}</p>
+                        <button name={eachProfile._id} className='btn btn-primary' onClick={this.connect}>Connect</button>
                     </div>
                 </div>
             )
@@ -122,7 +124,7 @@ export default class FindProfiles extends React.Component {
                     </div>
                     <button className='btn btn-primary m-3 px-5' onClick={this.searchProfile}>Search</button>
 
-                    <div >
+                    <div id='profiles'>
                         {this.renderProfiles()}
                     </div>
 
