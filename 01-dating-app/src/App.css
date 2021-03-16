@@ -3,28 +3,41 @@
     background-size:cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    
+    font-family:'Cormorant Garamond', serif;
+}
 
+@font-face{
+    font-family:'Cormorant Garamond', serif;
+    src:url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&display=swap');
 }
 
 .error{
     color:red;
 }
+
 #username{
     color:grey
 }
 
-#search-bar{
+#createBtn{
+    background-color: rgb(236, 77, 215);
+    color:white;
+    box-shadow:0 8px 16px 0 rgba(212, 4, 101, 0.753), 0 6px 20px 0 rgba(0,0,0,0.19)
+}
+
+#search{
     width:80%;
     margin:10px;
-    padding:10px
+    padding:50px;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.4);
 }
 
 .card{
     border:1px solid white;
     width:50%;
     margin:auto;
-    margin-top:40px
+    margin-top:40px 
 }
 #profiles{
     
@@ -45,38 +58,45 @@ img{
 
 @media (min-width:280px){
     #signup{
-    border:1px solid gray;
+    border:1px solid white;
     width:300px;
-    margin:auto;
+    /* margin:auto; */
     border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.822);
+    margin:30px auto
     }
 }
 @media (min-width: 360px){
     #signup{
-    border:1px solid gray;
+    border:1px solid white;
     width:350px;
-    margin:auto;
     border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.822);
+    margin:30px auto
+    
+
     }
 
 }
 
 @media (min-width: 768px){
     #signup{
-    border:1px solid gray;
+    border:1px solid white;
     width:550px;
-    margin:auto;
     border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.822);
+    margin:30px auto
     }
 
 }
 
 @media (min-width: 1024px){
     #signup{
-    border:1px solid gray;
+    border:1px solid white;
     width:650px;
-    margin:auto;
     border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.822);
+    margin:30px auto
     }
 
 }

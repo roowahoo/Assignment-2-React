@@ -76,7 +76,7 @@ export default class FindProfiles extends React.Component {
                             <DropdownItem>Another Action</DropdownItem>
                         </DropdownMenu>
                     </ButtonDropdown> */}
-                    <div className='row'>
+                    <div className='row' id='search'>
                         <div className='col-3'>
                             <button className='btn btn-secondary' onClick={this.byGender}>Gender</button>
                             <button className='btn btn-secondary m-1' style={{ display: this.state.byGender ? 'block' : 'none' }} value='male' name='gender' onClick={this.updateFormFields}>Male</button>
@@ -89,40 +89,36 @@ export default class FindProfiles extends React.Component {
 
                         </div>
 
-                        <div className='row'>
-                            {/* <div className='m-3 text-left'> */}
-                            <div className='col-3'>
-                                <button className='btn btn-secondary' onClick={this.byInterest}>Interests</button>
-                                <div style={{ display: this.state.byInterest ? 'block' : 'none' }}>
-                                    <div className='form-check'>
-                                        <input className='form-check-input' type='checkbox' name='interests' value='sports' onChange={this.updateInterests} />
-                                        <label className='form-check-label'>Sports</label>
-                                    </div>
-                                    <div className='form-check'>
-                                        <input className='form-check-input' type='checkbox' name='interests' value='arts' onChange={this.updateInterests} />
-                                        <label className='form-check-label'>Arts</label>
-                                    </div>
-                                    <div className='form-check'>
-                                        <input className='form-check-input' type='checkbox' name='interests' value='food' onChange={this.updateInterests} />
-                                        <label className='form-check-label'>Food</label>
-                                    </div>
-                                    <div className='form-check'>
-                                        <input className='form-check-input' type='checkbox' name='interests' value='travel' onChange={this.updateInterests} />
-                                        <label className='form-check-label'>Travel</label>
-                                    </div>
-                                    <div className='form-check'>
-                                        <input className='form-check-input' type='checkbox' name='interests' value='education' onChange={this.updateInterests} />
-                                        <label className='form-check-label'>Education</label>
-                                    </div>
+                        <div className='col-3'>
+                            <button className='btn btn-secondary' onClick={this.byInterest}>Interests</button>
+                            <div style={{ display: this.state.byInterest ? 'block' : 'none' }}>
+                                <div className='form-check'>
+                                    <input className='form-check-input' type='checkbox' name='interests' value='sports' onChange={this.updateInterests} />
+                                    <label className='form-check-label'>Sports</label>
+                                </div>
+                                <div className='form-check'>
+                                    <input className='form-check-input' type='checkbox' name='interests' value='arts' onChange={this.updateInterests} />
+                                    <label className='form-check-label'>Arts</label>
+                                </div>
+                                <div className='form-check'>
+                                    <input className='form-check-input' type='checkbox' name='interests' value='food' onChange={this.updateInterests} />
+                                    <label className='form-check-label'>Food</label>
+                                </div>
+                                <div className='form-check'>
+                                    <input className='form-check-input' type='checkbox' name='interests' value='travel' onChange={this.updateInterests} />
+                                    <label className='form-check-label'>Travel</label>
+                                </div>
+                                <div className='form-check'>
+                                    <input className='form-check-input' type='checkbox' name='interests' value='education' onChange={this.updateInterests} />
+                                    <label className='form-check-label'>Education</label>
                                 </div>
                             </div>
-
-                            {/* </div> */}
-
                         </div>
 
+                        <button className='btn btn-primary col-3' onClick={this.searchProfile}>Search</button>
+
                     </div>
-                    <button className='btn btn-primary m-3 px-5' onClick={this.searchProfile}>Search</button>
+
 
                     <div id='profiles'>
                         {this.renderProfiles()}

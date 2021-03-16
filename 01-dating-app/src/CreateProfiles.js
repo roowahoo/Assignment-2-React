@@ -110,7 +110,7 @@ export default class CreateProfiles extends React.Component {
                         <input className="form-control" type="text" name='image_url' value={this.state.image_url} onChange={this.updateFormFields} placeholder='Insert image URL here' ></input>
                     </div>
                     <div className='d-flex justify-content-end'>
-                        <button className='btn btn-primary m-3 px-5' onClick={this.createProfile}>Submit</button>
+                        <button className='btn m-3 px-5' id='createBtn' onClick={this.createProfile}>Submit</button>
                     </div>
                 </div>
 

@@ -58,7 +58,7 @@ export default class Conversations extends React.Component {
                 <div style={{ display: this.state.validate ? 'block' : 'none' }}>
                     <label className='form-label'>Username:</label>
                     <input className='form-text' type='text' name='username' value={this.state.username} onChange={this.updateFormFields}></input>
-                    <button className='btn btn-primary' onClick={this.validate}>Submit</button>
+                    <button className='btn' onClick={this.validate}>Submit</button>
                 </div>
                 <div style={{ display: this.state.validate ? 'none' : 'block' }}>
                     <h1>Conversations</h1>
