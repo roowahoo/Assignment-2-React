@@ -1,10 +1,12 @@
-import React from 'react'
+// import React from 'react'
+import React, { useState } from 'react';
 import axios from 'axios'
 import Conversations from './Conversations'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 
 const baseURL = 'https://3001-white-impala-sa4c1pjn.ws-us03.gitpod.io'
+
 
 
 export default class FindProfiles extends React.Component {
@@ -20,11 +22,27 @@ export default class FindProfiles extends React.Component {
         display: true,
         user_id: '',
         user2_id: '',
+        user2_name:'',
         validate: false,
         username: '',
         conversationId: '',
-        message: ''
+        message: '',
+        dropdownOpen: false,
     }
+    toggle = event => {
+        if (this.state.dropdownOpen === false) {
+            this.setState({
+                dropdownOpen: true
+            })
+        } else {
+            this.setState({
+                dropdownOpen: false
+            })
+
+        }
+    }
+
+
 
 
 
@@ -42,10 +60,12 @@ export default class FindProfiles extends React.Component {
                 <div key={eachProfile._id} className="card">
                     <img src={eachProfile.image} className="card-img-top" alt="..." />
                     <div className="card-body">
-                        <h5 className="card-title">{eachProfile.name}, {eachProfile.age}</h5>
+                        <h5 className="card-title" >{eachProfile.name}, {eachProfile.age}</h5>
                         <p>Interests: {eachProfile.interests.join(', ')}</p>
                         <p className="card-text">{eachProfile.introduction}</p>
-                        <button name={eachProfile._id} className='btn btn-primary' onClick={this.connect}>Connect</button>
+                        <div className='d-flex justify-content-end'>
+                            <button value={eachProfile.name} name={eachProfile._id} className='btn pinkBtn' onClick={this.connect}>Connect</button>
+                        </div>
                     </div>
                 </div>
             )
@@ -63,30 +83,28 @@ export default class FindProfiles extends React.Component {
     render() {
         return (
             <React.Fragment>
+                <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                    <DropdownToggle caret>
+                        Gender
+                    </DropdownToggle>
+                    <DropdownMenu>
+                        <DropdownItem value='male' name='gender' onClick={this.updateFormFields}>Male</DropdownItem>
+                        <DropdownItem value='female' name='gender' onClick={this.updateFormFields}>Female</DropdownItem>
+                    </DropdownMenu>
+                </ButtonDropdown>
                 <div style={{ display: this.state.display ? 'block' : 'none' }}>
-                    {/* <ButtonDropdown isOpen={isOpen} toggle={toggle}>
-                        <DropdownToggle caret color="primary">
-                            Text
-  </DropdownToggle>
-                        <DropdownMenu>
-                            <DropdownItem header>Header</DropdownItem>
-                            <DropdownItem disabled>Action</DropdownItem>
-                            <DropdownItem>Another Action</DropdownItem>
-                            <DropdownItem divider />
-                            <DropdownItem>Another Action</DropdownItem>
-                        </DropdownMenu>
-                    </ButtonDropdown> */}
+
                     <div className='row' id='search'>
                         <div className='col-3'>
                             <button className='btn btn-secondary' onClick={this.byGender}>Gender</button>
                             <button className='btn btn-secondary m-1' style={{ display: this.state.byGender ? 'block' : 'none' }} value='male' name='gender' onClick={this.updateFormFields}>Male</button>
                             <button className='btn btn-secondary m-1' style={{ display: this.state.byGender ? 'block' : 'none' }} value='female' name='gender' onClick={this.updateFormFields}>Female</button>
                         </div>
-                        <div className='col-3'>
-                            <button className='btn btn-secondary m-1' onClick={this.byAge}>Age</button>
-                            <button className='btn btn-secondary m-1' style={{ display: this.state.byAge ? 'block' : 'none' }} value='20' name='age' onClick={this.updateFormFields}>20s</button>
-                            <button className='btn btn-secondary m-1' style={{ display: this.state.byAge ? 'block' : 'none' }} value='30' name='age' onClick={this.updateFormFields}>30s</button>
 
+                        <div className='col-3'>
+                            <button className='btn btn-secondary' onClick={this.byAge}>Age</button>
+                            <button className='btn btn-secondary' style={{ display: this.state.byAge ? 'block' : 'none' }} value='20' name='age' onClick={this.updateFormFields}>20s</button>
+                            <button className='btn btn-secondary' style={{ display: this.state.byAge ? 'block' : 'none' }} value='30' name='age' onClick={this.updateFormFields}>30s</button>
                         </div>
 
                         <div className='col-3'>
@@ -165,6 +183,7 @@ export default class FindProfiles extends React.Component {
             byGender: false
         })
     }
+
     updateFormFields = event => {
         this.setState({
             [event.target.name]: event.target.value
@@ -226,7 +245,8 @@ export default class FindProfiles extends React.Component {
     connect = event => {
         this.setState({
             validate: true,
-            user2_id: event.target.name
+            user2_id: event.target.name,
+            user2_name:event.target.value
         })
     }
 
@@ -243,12 +263,15 @@ export default class FindProfiles extends React.Component {
             this.setState({
                 conversations: true,
                 display: false,
-                user_id: ifUserExists.data
+                user_id: ifUserExists.data.user_id,
+                user_name:ifUserExists.data.name
             })
 
             let conversationUsers = {
                 user_id: this.state.user_id,
-                user2_id: this.state.user2_id
+                user_name:this.state.user_name,
+                user2_id: this.state.user2_id,
+                user2_name:this.state.user2_name
 
             }
 

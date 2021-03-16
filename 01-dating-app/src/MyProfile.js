@@ -128,7 +128,7 @@ export default class MyProfile extends React.Component {
         }
 
         let ifUserExists = await axios.post(baseURL + '/searchUsernames', searchUserName);
-        if (ifUserExists.data !== null) {
+        if (ifUserExists.data !== 'no username found') {
             console.log(ifUserExists.data)
 
             this.setState({
@@ -215,8 +215,6 @@ export default class MyProfile extends React.Component {
     deleteProfile= event=>{
         
         let response=axios.delete(baseURL+'/deleteProfile/' + this.state.user_id)
-
-        
         console.log(response)
         axios.delete(baseURL+'/deleteUsername/'+ this.state.user_id)
         window.location = '/'

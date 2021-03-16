@@ -110,7 +110,7 @@ export default class CreateProfiles extends React.Component {
                         <input className="form-control" type="text" name='image_url' value={this.state.image_url} onChange={this.updateFormFields} placeholder='Insert image URL here' ></input>
                     </div>
                     <div className='d-flex justify-content-end'>
-                        <button className='btn m-3 px-5' id='createBtn' onClick={this.createProfile}>Submit</button>
+                        <button className='btn m-3 px-5 pinkBtn' onClick={this.createProfile}>Submit</button>
                     </div>
                 </div>
 
@@ -203,16 +203,17 @@ export default class CreateProfiles extends React.Component {
             }
             let newUsername = {
                 username: this.state.username,
-                user_id: profileId
+                user_id: profileId,
+                name:this.state.name
             }
 
             if (this.showError() === true && this.state.name !== '' && this.state.dob !== '' && this.state.gender !== '' && this.state.interests.length > 0 && this.state.introduction !== '') {
                 await axios.post(baseURL + '/usernames', newUsername)
-                let clone = [...this.state.username]
-                clone.push(newUsername)
-                this.setState({
-                    username: clone,
-                })
+                // let clone = [...this.state.username]
+                // clone.push(newUsername)
+                // this.setState({
+                //     username: clone,
+                // })
             }
             window.location.reload();
         } catch (e) {

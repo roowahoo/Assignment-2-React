@@ -19,15 +19,16 @@
     color:grey
 }
 
-#createBtn{
+.pinkBtn{
     background-color: rgb(236, 77, 215);
     color:white;
-    box-shadow:0 8px 16px 0 rgba(212, 4, 101, 0.753), 0 6px 20px 0 rgba(0,0,0,0.19)
+    box-shadow:0 8px 16px 0 rgba(212, 4, 101, 0.753), 0 6px 20px 0 rgba(0,0,0,0.19);
+    padding:5px 30px
 }
 
 #search{
     width:80%;
-    margin:10px;
+    margin:10px auto;
     padding:50px;
     justify-content: center;
     background-color: rgba(255, 255, 255, 0.4);
@@ -39,13 +40,24 @@
     margin:auto;
     margin-top:40px 
 }
-#profiles{
-    
-}
 
 img{
     height: 100%;
 }
+
+.messages{
+     border:1px solid white;
+     background-color: rgba(255, 255, 255, 0.4);
+ }
+
+ .name_heading{
+     text-align:center;
+     font-weight:bold;
+     color:gray;
+     background-color:white;
+     padding:10px 0;
+
+ }
 
 .cursor{
     cursor:pointer
