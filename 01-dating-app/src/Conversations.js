@@ -8,6 +8,7 @@ export default class Conversations extends React.Component {
         validate: true,
         username: '',
         conversations: [],
+        conversationId: '',
         message: ''
     }
 
@@ -40,6 +41,15 @@ export default class Conversations extends React.Component {
             alert('user not found')
         }
     }
+    renderMessages = (messages) => {
+        return (
+            <React.Fragment>
+                {messages.map(item => (
+                    <p>{item}</p>
+                ))}
+            </React.Fragment>
+        )
+    }
 
     renderConversations = () => {
         return (
@@ -49,7 +59,7 @@ export default class Conversations extends React.Component {
                         <div className="card messages">
                             <div className="card-body">
                                 <h5 className="card-title name_heading" >{item.user_name} & {item.user2_name}</h5>
-                                <p className="card-text">{item.messages}</p>
+                                <p className="card-text">{this.renderMessages(item.messages)}</p>
                                 <input type='text' name='message' onChange={this.updateFormFields}></input>
                                 <button className='btn m-3 px-5 pinkBtn' name={item._id} onClick={this.send}>Send</button>
                             </div>
@@ -93,6 +103,7 @@ export default class Conversations extends React.Component {
             message: this.state.message
         }
         await axios.put(baseURL + '/conversations', { ...newMessage })
+        window.location.reload()
     }
 
 
