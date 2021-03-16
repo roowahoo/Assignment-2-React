@@ -50,6 +50,10 @@ img{
      background-color: rgba(255, 255, 255, 0.4);
  }
 
+ .messages input{
+     width:75%
+ }
+
  .name_heading{
      text-align:center;
      font-weight:bold;

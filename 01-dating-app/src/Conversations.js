@@ -7,6 +7,8 @@ export default class Conversations extends React.Component {
     state = {
         validate: true,
         username: '',
+        user_id:'',
+        user_name:'',
         conversations: [],
         conversationId: '',
         message: ''
@@ -23,7 +25,8 @@ export default class Conversations extends React.Component {
 
             this.setState({
                 validate: false,
-                user_id: ifUserExists.data.user_id
+                user_id: ifUserExists.data.user_id,
+                user_name:ifUserExists.data.name
             })
 
             let user = {
@@ -51,6 +54,14 @@ export default class Conversations extends React.Component {
         )
     }
 
+    renderChatName=(item)=>{
+        if(this.state.user_name!=item.user_name){
+            return item.user_name
+        }else{
+            return item.user2_name
+        }
+    }
+
     renderConversations = () => {
         return (
             <div>
@@ -58,10 +69,10 @@ export default class Conversations extends React.Component {
                     <div>
                         <div className="card messages">
                             <div className="card-body">
-                                <h5 className="card-title name_heading" >{item.user_name} & {item.user2_name}</h5>
+                                <h5 className="card-title name_heading" >{this.renderChatName(item)}</h5>
                                 <p className="card-text">{this.renderMessages(item.messages)}</p>
                                 <input type='text' name='message' onChange={this.updateFormFields}></input>
-                                <button className='btn m-3 px-5 pinkBtn' name={item._id} onClick={this.send}>Send</button>
+                                <button className='btn m-3 pinkBtn' name={item._id} onClick={this.send}>Send</button>
                             </div>
                         </div>
                     </div>
