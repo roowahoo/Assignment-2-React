@@ -30,7 +30,7 @@ export default class CreateProfiles extends React.Component {
         for (let eachProfile of this.state.profiles) {
             acc.push(
                 <div key={eachProfile._id} className='profiles'>
-                    <img src={eachProfile.image}/>
+                    <img alt='' src={eachProfile.image}/>
                     <h5>{eachProfile.name}, {eachProfile.age}</h5>
                     <p>Interests: {eachProfile.interests}</p>
                     <p>About: {eachProfile.introduction}</p>
@@ -80,23 +80,23 @@ export default class CreateProfiles extends React.Component {
                     <div className='m-3'>
                         <label className='form-label'>I Enjoy...</label>
                         <div className='form-check'>
-                            <input className='form-check-input' type='checkbox' name='interests' value='sports' onChange={this.updateInterests} />
+                            <input className='form-check-input' type='checkbox' name='interests' value='sports' onChange={this.updateInterests} checked={this.state.interests.includes('sports')}/>
                             <label className='form-check-label'>Sports</label>
                         </div>
                         <div className='form-check'>
-                            <input className='form-check-input' type='checkbox' name='interests' value='arts' onChange={this.updateInterests} />
+                            <input className='form-check-input' type='checkbox' name='interests' value='arts' onChange={this.updateInterests} checked={this.state.interests.includes('arts')}/>
                             <label className='form-check-label'>Arts</label>
                         </div>
                         <div className='form-check'>
-                            <input className='form-check-input' type='checkbox' name='interests' value='food' onChange={this.updateInterests} />
+                            <input className='form-check-input' type='checkbox' name='interests' value='food' onChange={this.updateInterests} checked={this.state.interests.includes('food')}/>
                             <label className='form-check-label'>Food</label>
                         </div>
                         <div className='form-check'>
-                            <input className='form-check-input' type='checkbox' name='interests' value='travel' onChange={this.updateInterests} />
+                            <input className='form-check-input' type='checkbox' name='interests' value='travel' onChange={this.updateInterests} checked={this.state.interests.includes('travel')} />
                             <label className='form-check-label'>Travel</label>
                         </div>
                         <div className='form-check'>
-                            <input className='form-check-input' type='checkbox' name='interests' value='education' onChange={this.updateInterests} />
+                            <input className='form-check-input' type='checkbox' name='interests' value='education' onChange={this.updateInterests} checked={this.state.interests.includes('education')} />
                             <label className='form-check-label'>Education</label>
                         </div>
                     </div>

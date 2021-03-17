@@ -55,7 +55,7 @@ export default class Conversations extends React.Component {
     }
 
     renderChatName=(item)=>{
-        if(this.state.user_name!=item.user_name){
+        if(this.state.user_name!==item.user_name){
             return item.user_name
         }else{
             return item.user2_name
@@ -101,7 +101,7 @@ export default class Conversations extends React.Component {
 
     updateFormFields = event => {
         this.setState({
-            [event.target.name]: event.target.value
+            [event.target.name]:event.target.value
         })
 
     }
