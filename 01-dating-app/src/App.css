@@ -27,11 +27,11 @@
 }
 
 #search{
-    width:80%;
+    width:70%;
     margin:10px auto;
-    padding:50px;
+    padding:30px;
     justify-content: center;
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .card{
