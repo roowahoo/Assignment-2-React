@@ -1,7 +1,6 @@
 import React from 'react'
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 const baseURL = 'https://3001-white-impala-sa4c1pjn.ws-us03.gitpod.io'
@@ -132,11 +131,9 @@ export default class FindProfiles extends React.Component {
                     {this.renderProfiles()}
                 </div>
 
-                <div id='popup' style={{ display: this.state.validate ? 'block' : 'none' }}>
-                    <label className='form-label'>Username:</label>
-                    <input className='form-text' type='text' name='username' value={this.state.username} onChange={this.updateFormFields}></input>
-                    <button className='btn btn-primary' onClick={this.validate}>Submit</button>
-                </div>
+                {/* <div style={{ display: this.state.validate ? 'block' : 'none' }}>
+                    <Validation username={this.state.username} updateForm={this.updateFormFields} validate={this.validate}/>
+                </div> */}
 
 
                 <div style={{ display: this.state.conversations ? 'block' : 'none' }}>
@@ -243,8 +240,6 @@ export default class FindProfiles extends React.Component {
             })
 
         }
-
-
 
     }
 

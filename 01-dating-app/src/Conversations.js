@@ -1,49 +1,37 @@
 import React from 'react'
 import axios from 'axios'
+import CreateProfiles from './CreateProfiles'
 
 const baseURL = 'https://3001-white-impala-sa4c1pjn.ws-us03.gitpod.io'
 
 export default class Conversations extends React.Component {
     state = {
         validate: true,
-        username: '',
-        user_id:'',
-        user_name:'',
+        username: this.props.username,
+        user_id: this.props.user_id,
+        name: this.props.name,
+
         conversations: [],
         conversationId: '',
-        message: ''
+        message: '',
+        isLoggedIn: this.props.isLoggedIn,
     }
 
-    validate = async event => {
-        let searchUserName = {
-            username: this.state.username
-        }
-
-        let ifUserExists = await axios.post(baseURL + '/searchUsernames', searchUserName);
-        if (ifUserExists.data !== 'no username found') {
-            console.log(ifUserExists.data)
-
-            this.setState({
-                validate: false,
-                user_id: ifUserExists.data.user_id,
-                user_name:ifUserExists.data.name
-            })
-
+    componentDidMount= async()=> {
+         if (this.state.isLoggedIn === true) {
             let user = {
                 user_id: this.state.user_id
-
             }
 
             let foundConversations = await axios.post(baseURL + '/findConversations', user)
+            console.log(foundConversations.data)
             this.setState({
                 conversations: foundConversations.data
             })
-            console.log(foundConversations.data)
 
-        } else {
-            alert('user not found')
-        }
+        }     
     }
+
     renderMessages = (messages) => {
         return (
             <React.Fragment>
@@ -54,10 +42,10 @@ export default class Conversations extends React.Component {
         )
     }
 
-    renderChatName=(item)=>{
-        if(this.state.user_name!==item.user_name){
+    renderChatName = (item) => {
+        if (this.state.name !== item.user_name) {
             return item.user_name
-        }else{
+        } else {
             return item.user2_name
         }
     }
@@ -70,7 +58,7 @@ export default class Conversations extends React.Component {
                         <div className="card messages">
                             <div className="card-body">
                                 <h5 className="card-title name_heading" >{this.renderChatName(item)}</h5>
-                                <p className="card-text">{this.renderMessages(item.messages)}</p>
+                                <div className="card-text">{this.renderMessages(item.messages)}</div>
                                 <input type='text' name='message' onChange={this.updateFormFields}></input>
                                 <button className='btn m-3 pinkBtn' name={item._id} onClick={this.send}>Send</button>
                             </div>
@@ -81,32 +69,27 @@ export default class Conversations extends React.Component {
         )
     }
 
-
     render() {
-        return (
-            <React.Fragment>
-                <div style={{ display: this.state.validate ? 'block' : 'none' }}>
-                    <label className='form-label'>Username:</label>
-                    <input className='form-text' type='text' name='username' value={this.state.username} onChange={this.updateFormFields}></input>
-                    <button className='btn btn-primary' onClick={this.validate}>Submit</button>
-                </div>
-                <div style={{ display: this.state.validate ? 'none' : 'block' }}>
+        if(this.state.isLoggedIn===true){
+            return(
+                <React.Fragment>
+                    {/* {this.showProfileOrConversations()} */}
                     {this.renderConversations()}
-                </div>
 
-            </React.Fragment>
-        )
+                </React.Fragment>)
+        }else{
+            return(
+                    <CreateProfiles/>
+            )
+        }
 
     }
 
     updateFormFields = event => {
         this.setState({
-            [event.target.name]:event.target.value
+            [event.target.name]: event.target.value
         })
-
     }
-
-
 
     send = async event => {
         let newMessage = {

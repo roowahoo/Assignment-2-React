@@ -15,7 +15,8 @@ export default class CreateProfiles extends React.Component {
         interests: [],
         introduction: '',
         image_url:'',
-        errorMessage: false
+        errorMessage: false,
+        isLoggedIn: this.props.isLoggedIn
 
     }
     async componentDidMount() {

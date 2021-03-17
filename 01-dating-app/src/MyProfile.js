@@ -6,8 +6,7 @@ const baseURL = 'https://3001-white-impala-sa4c1pjn.ws-us03.gitpod.io'
 export default class MyProfile extends React.Component {
     state = {
         username: '',
-        validate: true,
-        user_id: '',
+        user_id: this.props.user_id,
         profile: '',
         editedName: '',
         editedUsername: '',
@@ -16,34 +15,19 @@ export default class MyProfile extends React.Component {
         editedDob: '',
         editedInterests: [],
         editedIntroduction: '',
-        editedImage:''
+        editedImage:'',
+        isLoggedIn:this.props.isLoggedIn
 
     }
     render() {
         return (
             <React.Fragment>
-                <div style={{ display: this.state.validate ? 'block' : 'none' }}>
-                    <label className='form-label'>Username:</label>
-                    <input className='form-text' type='text' name='username' value={this.state.username} onChange={this.updateFormFields}></input>
-                    <button className='btn btn-primary' onClick={this.validate}>Submit</button>
-                </div>
 
-                <div id='signup' style={{ display: this.state.validate ? 'none' : 'block' }}>
+                <div id='signup'>
                     <div className='m-3 text-left'>
                         <label className='form-label'>Name</label>
                         <input className="form-control" type="text" name='editedName' value={this.state.editedName} onChange={this.updateFormFields} />
                     </div>
-
-                    {/* <div className='m-3 text-left'>
-                        <label className='form-label'>Username</label>
-                        <div className='input-group text-left'>
-                            <span className="input-group-text">@</span>
-                            <input className="form-control" type="text" name='username' value={this.state.username}/>
-                            <div id='username'>Username cannot be changed</div>
-                            <span style={{ display: this.showError() ? 'none' : 'block' }} className='error'>Please enter a valid username</span>
-                            <span style={{ display: this.state.errorMessage ? 'block' : 'none' }} className='error'>Username has been taken</span>
-                        </div>
-                    </div> */}
 
                     <div className='m-3 text-left'>
                         <label className='form-label'>Gender</label>
@@ -122,19 +106,8 @@ export default class MyProfile extends React.Component {
 
     }
 
-    validate = async event => {
-        let searchUserName = {
-            username: this.state.username
-        }
-
-        let ifUserExists = await axios.post(baseURL + '/searchUsernames', searchUserName);
-        if (ifUserExists.data !== 'no username found') {
-            console.log(ifUserExists.data)
-
-            this.setState({
-                user_id: ifUserExists.data
-            })
-
+    async componentDidMount() {
+        
             let foundUser = {
                 user_id: this.state.user_id
 
@@ -153,10 +126,7 @@ export default class MyProfile extends React.Component {
                 validate: false
             })
 
-        } else {
-            console.log(ifUserExists)
-            alert('user not found')
-        }
+        
     }
 
     // showError = () => {
