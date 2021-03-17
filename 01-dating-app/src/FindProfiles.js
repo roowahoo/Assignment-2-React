@@ -14,9 +14,6 @@ export default class FindProfiles extends React.Component {
         gender: '',
         age: '',
         interests: [],
-        byGender: false,
-        byAge: false,
-        byInterests: false,
         conversations: false,
         display: true,
         user_id: '',
@@ -124,7 +121,7 @@ export default class FindProfiles extends React.Component {
                     </div>
 
                     <div className='d-flex justify-content-end'>
-                            <button className='btn pinkBtn' onClick={this.searchProfile}>Search</button>
+                        <button className='btn pinkBtn mt-2' onClick={this.searchProfile}>Search</button>
                     </div>
 
                 </div>
@@ -152,29 +149,6 @@ export default class FindProfiles extends React.Component {
         )
     }
 
-    byGender = event => {
-        this.setState({
-            byGender: true,
-            byAge: false,
-            byInterest: false
-        })
-    }
-
-    byAge = event => {
-        this.setState({
-            byAge: true,
-            byGender: false,
-            byInterest: false
-        })
-    }
-
-    byInterest = event => {
-        this.setState({
-            byInterest: true,
-            byAge: false,
-            byGender: false
-        })
-    }
 
     updateFormFields = event => {
         this.setState({
@@ -209,35 +183,68 @@ export default class FindProfiles extends React.Component {
 
         }
         console.log(searchValue)
-        // if (this.state.interests.length === 0) {
-        // console.log(searchValue)
-        // let response = await axios.post(baseURL + '/searchbygender', searchValue)
-        // console.log(response)
-        // this.setState({
-        //     profiles: response.data
-        // })
 
-        // }
-        // if (this.state.gender === '') {
-        //     let response = await axios.post(baseURL + '/searchbyinterests', searchValue)
-        //     console.log(response)
-        //     this.setState({
-        //         profiles: response.data
-        //     })
-        // }
-        // if (this.state.age !== '') {
-        //     let response = await axios.post(baseURL + '/searchbyage', searchValue)
-        //     console.log(response)
-        //     this.setState({
-        //         profiles: response.data
-        //     })
-        // }
+        if (this.state.interests.length === 0 && this.state.age === '' && this.state.gender!='') {
+            console.log(searchValue)
+            let response = await axios.post(baseURL + '/searchbygender', searchValue)
+            console.log(response)
+            this.setState({
+                profiles: response.data
+            })
 
-        let response = await axios.post(baseURL + '/searchbyall', searchValue)
-        console.log(response)
-        this.setState({
-            profiles: response.data
-        })
+        }
+        if (this.state.gender === '' && this.state.age === '' && this.state.interests.length !== 0) {
+            let response = await axios.post(baseURL + '/searchbyinterests', searchValue)
+            console.log(response)
+            this.setState({
+                profiles: response.data
+            })
+        }
+
+        if (this.state.gender === '' && this.state.interests.length === 0 && this.state.age !== '' ) {
+            let response = await axios.post(baseURL + '/searchbyage', searchValue)
+            console.log(response)
+            this.setState({
+                profiles: response.data
+            })
+        }
+        if(this.state.gender !== '' && this.state.interests.length !== 0 && this.state.age !== '') {
+            let response = await axios.post(baseURL + '/searchbyall', searchValue)
+            console.log(response)
+            this.setState({
+                profiles: response.data
+            })
+
+        }
+
+        if(this.state.gender !== '' && this.state.interests.length === 0 && this.state.age !== '') {
+            let response = await axios.post(baseURL + '/searchbygenderage', searchValue)
+            console.log(response)
+            this.setState({
+                profiles: response.data
+            })
+
+        }
+
+        if(this.state.gender !== '' && this.state.interests.length !== 0 && this.state.age === '') {
+            let response = await axios.post(baseURL + '/searchbygenderinterests', searchValue)
+            console.log(response)
+            this.setState({
+                profiles: response.data
+            })
+
+        }
+
+        if(this.state.gender === '' && this.state.interests.length !== 0 && this.state.age !== '') {
+            let response = await axios.post(baseURL + '/searchbyageinterests', searchValue)
+            console.log(response)
+            this.setState({
+                profiles: response.data
+            })
+
+        }
+
+
 
     }
 
