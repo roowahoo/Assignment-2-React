@@ -45,6 +45,14 @@ img{
     height: 100%;
 }
 
+#sendMsg{
+    height:100vh
+}
+
+#sendMsg div{
+    margin:280px 100px
+}
+
 .messages{
      border:1px solid white;
      background-color: rgba(255, 255, 255, 0.4);
@@ -67,29 +75,30 @@ img{
     cursor:pointer
 }
 
-#root{
-    position:relative
-}
-#popup{
-    position:absolute;
+
+#validate{
     border:1px solid gray;
-    background-color: rgba(255, 255, 255);
-    width:800px;
-    height:500px;
-    top:50%;
-    left:50%;
-    transform: translate(-50%, -50%)
+    background-color: rgba(255, 255, 255,0.5);
+    
+    
 }
 
 @media (min-width:280px){
     #signup{
     border:1px solid white;
     width:300px;
-    /* margin:auto; */
     border-radius: 25px;
     background-color: rgba(255, 255, 255, 0.822);
     margin:30px auto
     }
+
+    #search{
+    width:100%;
+    margin:10px auto;
+    padding:30px;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.8);
+}
 }
 @media (min-width: 360px){
     #signup{
@@ -98,9 +107,15 @@ img{
     border-radius: 25px;
     background-color: rgba(255, 255, 255, 0.822);
     margin:30px auto
-    
-
     }
+
+    #search{
+    width:90%;
+    margin:10px auto;
+    padding:30px;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.8);
+}
 
 }
 
@@ -112,6 +127,14 @@ img{
     background-color: rgba(255, 255, 255, 0.822);
     margin:30px auto
     }
+
+    #search{
+    width:90%;
+    margin:10px auto;
+    padding:30px;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.8);
+}
 
 }
 
