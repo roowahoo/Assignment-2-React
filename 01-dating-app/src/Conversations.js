@@ -59,8 +59,10 @@ export default class Conversations extends React.Component {
                             <div className="card-body">
                                 <h5 className="card-title name_heading" >{this.renderChatName(item)}</h5>
                                 <div className="card-text">{this.renderMessages(item.messages)}</div>
-                                <input type='text' name='message' onChange={this.updateFormFields}></input>
-                                <button className='btn m-3 pinkBtn' name={item._id} onClick={this.send}>Send</button>
+                                <div className='d-flex'>
+                                <input className='form-control' type='text' name='message' onChange={this.updateFormFields}></input>
+                                <button className='btn mx-3 pinkBtn' name={item._id} onClick={this.send}>Send</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -73,7 +75,6 @@ export default class Conversations extends React.Component {
         if(this.state.isLoggedIn===true){
             return(
                 <React.Fragment>
-                    {/* {this.showProfileOrConversations()} */}
                     {this.renderConversations()}
 
                 </React.Fragment>)

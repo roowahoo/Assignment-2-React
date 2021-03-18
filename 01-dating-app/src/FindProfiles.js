@@ -239,9 +239,10 @@ export default class FindProfiles extends React.Component {
                 sendMsg: true,
                 display: false
             })
+            window.scrollTo(0,0)
 
         } else {
-            alert('Please create profile')
+            alert('Please login')
         }
 
 

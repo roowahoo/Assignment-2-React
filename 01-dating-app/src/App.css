@@ -1,14 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
 .App{
     background-image:url(images/hearts_bg.jpg) ;
     background-size:cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    font-family:'Cormorant Garamond', serif;
+    font-family: 'Playfair Display', serif;
 }
 
-@font-face{
-    font-family:'Cormorant Garamond', serif;
-    src:url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&display=swap');
+#create_heading{
+    font-weight:bold;
+    text-align:center;
+    padding-top:20px
 }
 
 .error{
@@ -16,13 +18,21 @@
 }
 
 #username{
-    color:grey
+    color:grey;
+    
 }
 
 .pinkBtn{
     background-color: rgb(236, 77, 215);
     color:white;
     box-shadow:0 8px 16px 0 rgba(212, 4, 101, 0.753), 0 6px 20px 0 rgba(0,0,0,0.19);
+    padding:5px 30px
+}
+
+.delBtn{
+    background-color: rgb(224, 26, 12);
+    color:white;
+    box-shadow:0 8px 16px 0 rgba(138, 3, 14, 0.945), 0 6px 20px 0 rgba(0,0,0,0.19);
     padding:5px 30px
 }
 
@@ -55,7 +65,7 @@ img{
 
 .messages{
      border:1px solid white;
-     background-color: rgba(255, 255, 255, 0.4);
+     background-color: rgba(255, 255, 255, 0.6);
  }
 
  .messages input{
@@ -68,6 +78,7 @@ img{
      color:gray;
      background-color:white;
      padding:10px 0;
+     font-family:'Cormorant Unicase', serif;
 
  }
 
@@ -89,7 +100,7 @@ img{
     width:300px;
     border-radius: 25px;
     background-color: rgba(255, 255, 255, 0.822);
-    margin:30px auto
+    margin:30px auto;
     }
 
     #search{

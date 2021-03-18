@@ -43,9 +43,14 @@ export default class App extends React.Component {
                 name: ifUserExists.data.name
 
             })
+            alert('Login successful')
+            this.setState({
+                findProfiles:true,
+                createProfiles:false
+            })
 
         } else {
-            alert('user not found')
+            alert('User not found')
         }
     }
 
