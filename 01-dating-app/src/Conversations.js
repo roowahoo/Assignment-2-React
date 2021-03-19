@@ -1,6 +1,10 @@
 import React from 'react'
 import axios from 'axios'
 import CreateProfiles from './CreateProfiles'
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
+import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 const baseURL = 'https://3001-white-impala-sa4c1pjn.ws-us03.gitpod.io'
 
@@ -16,7 +20,7 @@ export default class Conversations extends React.Component {
         message: '',
         isLoggedIn: this.props.isLoggedIn,
         editing: false,
-        messageId:'',
+        messageId: '',
         editedMessage: ''
     }
 
@@ -41,9 +45,9 @@ export default class Conversations extends React.Component {
             <React.Fragment>
                 {messages.map(item => (
 
-                    <div className='d-flex justify-content-between'>
+                    <div className='d-flex justify-content-between edit_message'>
                         <p><span className='chat_name'>{item.name}:</span> {item.message}</p>
-                        <a className='cursor' name={item._id} onClick={this.editMessage}>Edit</a>
+                        <a className='cursor' name={item._id} onClick={this.editMessage}>&#9998;</a>
                     </div>
 
                 ))}
@@ -69,13 +73,17 @@ export default class Conversations extends React.Component {
                             <div className="card-body">
                                 <h5 className="card-title name_heading" >{this.renderChatName(item)}</h5>
                                 <div className="card-text">{this.renderMessages(item.messages)}</div>
-                                <div style={{ display: this.state.editing ? 'block' : 'none' }}>
-                                    <input className='form-control' type='text' name='editedMessage' onChange={this.updateFormFields}></input>
-                                    <a name={item._id}  className='cursor' onClick={this.confirmEdit}>Confirm</a>
+                                <div style={{ display: this.state.editing ? 'block' : 'none' }} >
+                                    <div className='d-flex mb-2 edit_ok'>
+                                        <input className='form-control' type='text' name='editedMessage' onChange={this.updateFormFields}></input>
+                                        <a name={item._id} className='cursor' onClick={this.confirmEdit}>&#9745;</a>
+                                    </div>
                                 </div>
-                                <div className='d-flex'>
-                                    <input className='form-control' type='text' name='message' onChange={this.updateFormFields}></input>
-                                    <button className='btn mx-3 pinkBtn' name={item._id} onClick={this.send}>Send</button>
+                                <div style={{ display: this.state.editing ? 'none' : 'block' }}>
+                                    <div className='d-flex'>
+                                        <input className='form-control' type='text' name='message' onChange={this.updateFormFields}></input>
+                                        <button className='btn mx-3 pinkBtn' name={item._id} onClick={this.send}>Send</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -119,7 +127,7 @@ export default class Conversations extends React.Component {
     editMessage = event => {
         this.setState({
             editing: true,
-            messageId:event.target.name
+            messageId: event.target.name
         })
     }
 

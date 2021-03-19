@@ -90,6 +90,31 @@ img{
     cursor:pointer
 }
 
+.edit_ok a{
+    color:#5bb924;
+    margin:5px 12px 0;
+    opacity:0.5;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.edit_ok a:hover{
+    opacity:1;
+
+}
+
+.edit_message a{
+    color:gray;
+    opacity:0.5;
+    text-decoration: none;
+}
+
+.edit_message a:hover{
+    opacity:1;
+    color:black
+    
+}
+
 
 #validate{
     border:1px solid gray;
