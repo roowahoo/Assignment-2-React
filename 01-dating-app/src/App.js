@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import FindProfiles from './FindProfiles'
 import Conversations from './Conversations'
 import MyProfile from './MyProfile'
+import Logo from './images/Logo.png'
 
 const baseURL = 'https://3001-white-impala-sa4c1pjn.ws-us03.gitpod.io'
 
@@ -100,7 +101,9 @@ export default class App extends React.Component {
                 <div className="App">
                     <nav className="navbar navbar-expand-lg navbar-light bg-light">
                         <div className="container-fluid">
+                            
                             <ul className="navbar-nav">
+                                <img src={Logo} id='logo'/>
                                 <li className="nav-item">
                                     <a className="nav-link cursor" onClick={this.createLink}>Create Profile</a>
                                 </li>

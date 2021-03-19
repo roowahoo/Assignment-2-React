@@ -7,6 +7,15 @@
     font-family: 'Playfair Display', serif;
 }
 
+#logo{
+    height:90px;
+    position:relative
+}
+
+.nav-item{
+    padding-top:25px
+}
+
 #create_heading{
     font-weight:bold;
     text-align:center;
