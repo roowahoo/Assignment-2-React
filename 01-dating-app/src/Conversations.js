@@ -15,6 +15,9 @@ export default class Conversations extends React.Component {
         conversationId: '',
         message: '',
         isLoggedIn: this.props.isLoggedIn,
+        editing: false,
+        messageId:'',
+        editedMessage: ''
     }
 
     componentDidMount = async () => {
@@ -37,11 +40,16 @@ export default class Conversations extends React.Component {
         return (
             <React.Fragment>
                 {messages.map(item => (
-                    <p><span className='chat_name'>{item.name}:</span> {item.message}</p>
+
+                    <div className='d-flex justify-content-between'>
+                        <p><span className='chat_name'>{item.name}:</span> {item.message}</p>
+                        <a className='cursor' name={item._id} onClick={this.editMessage}>Edit</a>
+                    </div>
+
                 ))}
             </React.Fragment>
         )
-        
+
     }
 
     renderChatName = (item) => {
@@ -61,6 +69,10 @@ export default class Conversations extends React.Component {
                             <div className="card-body">
                                 <h5 className="card-title name_heading" >{this.renderChatName(item)}</h5>
                                 <div className="card-text">{this.renderMessages(item.messages)}</div>
+                                <div style={{ display: this.state.editing ? 'block' : 'none' }}>
+                                    <input className='form-control' type='text' name='editedMessage' onChange={this.updateFormFields}></input>
+                                    <a name={item._id}  className='cursor' onClick={this.confirmEdit}>Confirm</a>
+                                </div>
                                 <div className='d-flex'>
                                     <input className='form-control' type='text' name='message' onChange={this.updateFormFields}></input>
                                     <button className='btn mx-3 pinkBtn' name={item._id} onClick={this.send}>Send</button>
@@ -98,10 +110,26 @@ export default class Conversations extends React.Component {
         let newMessage = {
             conversationId: event.target.name,
             message: this.state.message,
-            name:this.state.name
+            name: this.state.name
         }
         await axios.put(baseURL + '/conversations', { ...newMessage })
-        window.location.reload()
+        window.location = '/'
+    }
+
+    editMessage = event => {
+        this.setState({
+            editing: true,
+            messageId:event.target.name
+        })
+    }
+
+    confirmEdit = async event => {
+        let editedMessage = {
+            messageId: this.state.messageId,
+            message: this.state.editedMessage
+        }
+        await axios.post(baseURL + '/conversations/editmessage', { ...editedMessage })
+
     }
 
 
