@@ -17,8 +17,8 @@ export default class Conversations extends React.Component {
         isLoggedIn: this.props.isLoggedIn,
     }
 
-    componentDidMount= async()=> {
-         if (this.state.isLoggedIn === true) {
+    componentDidMount = async () => {
+        if (this.state.isLoggedIn === true) {
             let user = {
                 user_id: this.state.user_id
             }
@@ -28,18 +28,20 @@ export default class Conversations extends React.Component {
             this.setState({
                 conversations: foundConversations.data
             })
+            console.log(foundConversations)
 
-        }     
+        }
     }
 
     renderMessages = (messages) => {
         return (
             <React.Fragment>
                 {messages.map(item => (
-                    <p>{item}</p>
+                    <p><span className='chat_name'>{item.name}:</span> {item.message}</p>
                 ))}
             </React.Fragment>
         )
+        
     }
 
     renderChatName = (item) => {
@@ -60,8 +62,8 @@ export default class Conversations extends React.Component {
                                 <h5 className="card-title name_heading" >{this.renderChatName(item)}</h5>
                                 <div className="card-text">{this.renderMessages(item.messages)}</div>
                                 <div className='d-flex'>
-                                <input className='form-control' type='text' name='message' onChange={this.updateFormFields}></input>
-                                <button className='btn mx-3 pinkBtn' name={item._id} onClick={this.send}>Send</button>
+                                    <input className='form-control' type='text' name='message' onChange={this.updateFormFields}></input>
+                                    <button className='btn mx-3 pinkBtn' name={item._id} onClick={this.send}>Send</button>
                                 </div>
                             </div>
                         </div>
@@ -72,15 +74,15 @@ export default class Conversations extends React.Component {
     }
 
     render() {
-        if(this.state.isLoggedIn===true){
-            return(
+        if (this.state.isLoggedIn === true) {
+            return (
                 <React.Fragment>
                     {this.renderConversations()}
 
                 </React.Fragment>)
-        }else{
-            return(
-                    <CreateProfiles/>
+        } else {
+            return (
+                <CreateProfiles />
             )
         }
 
@@ -95,7 +97,8 @@ export default class Conversations extends React.Component {
     send = async event => {
         let newMessage = {
             conversationId: event.target.name,
-            message: this.state.message
+            message: this.state.message,
+            name:this.state.name
         }
         await axios.put(baseURL + '/conversations', { ...newMessage })
         window.location.reload()

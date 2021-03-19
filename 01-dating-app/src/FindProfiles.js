@@ -44,6 +44,7 @@ export default class FindProfiles extends React.Component {
                     <div className="card-body">
                         <h5 className="card-title" >{eachProfile.name}, {eachProfile.age}</h5>
                         <p>Interests: {eachProfile.interests.join(', ')}</p>
+                        <p>About me:</p>
                         <p className="card-text">{eachProfile.introduction}</p>
                         <div className='d-flex justify-content-end'>
                             <button value={eachProfile.name} name={eachProfile._id} className='btn pinkBtn' onClick={this.connect}>Connect</button>
@@ -256,7 +257,8 @@ export default class FindProfiles extends React.Component {
             user_name: this.state.name,
             user2_id: this.state.user2_id,
             user2_name: this.state.user2_name,
-            message: this.state.message
+            message: this.state.message,
+            name:this.state.name
 
         }
 

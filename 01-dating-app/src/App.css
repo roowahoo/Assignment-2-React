@@ -82,6 +82,10 @@ img{
 
  }
 
+ .chat_name{
+     font-weight:bold
+ }
+
 .cursor{
     cursor:pointer
 }
