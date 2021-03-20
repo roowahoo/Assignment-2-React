@@ -103,18 +103,18 @@ export default class App extends React.Component {
                         <div className="container-fluid">
                             
                             <ul className="navbar-nav">
-                                <img src={Logo} id='logo'/>
+                                <img src={Logo} id='logo' alt=''/>
                                 <li className="nav-item">
-                                    <a className="nav-link cursor" onClick={this.createLink}>Create Profile</a>
+                                    <a className="nav-link cursor" onClick={this.createLink} href='/#'>Create Profile</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link cursor" onClick={this.findLink} >Find Profiles</a>
+                                    <a className="nav-link cursor" onClick={this.findLink} href='/#'>Find Profiles</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a className="nav-link cursor" onClick={this.conversationsLink}>Conversations</a>
+                                <li className="nav-item">
+                                    <a className="nav-link cursor" onClick={this.conversationsLink} href='/#'>Conversations</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a className="nav-link cursor" onClick={this.myProfileLink}>My Profile</a>
+                                <li className="nav-item">
+                                    <a className="nav-link cursor" onClick={this.myProfileLink} href='/#'>My Profile</a>
                                 </li>
                             </ul>
 
@@ -137,5 +137,3 @@ export default class App extends React.Component {
         );
     }
 }
-
-// export default App;

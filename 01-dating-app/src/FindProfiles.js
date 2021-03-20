@@ -1,9 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import CreateProfiles from './CreateProfiles'
-import Conversations from './Conversations';
+import {Label, Input} from 'reactstrap'
 
 const baseURL = 'https://3001-white-impala-sa4c1pjn.ws-us03.gitpod.io'
 
@@ -170,7 +168,7 @@ export default class FindProfiles extends React.Component {
         }
         console.log(searchValue)
 
-        if (this.state.interests.length === 0 && this.state.age === '' && this.state.gender != '') {
+        if (this.state.interests.length === 0 && this.state.age === '' && this.state.gender !== '') {
             console.log(searchValue)
             let response = await axios.post(baseURL + '/searchbygender', searchValue)
             console.log(response)

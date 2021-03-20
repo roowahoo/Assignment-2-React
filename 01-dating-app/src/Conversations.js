@@ -1,9 +1,6 @@
 import React from 'react'
 import axios from 'axios'
 import CreateProfiles from './CreateProfiles'
-import { faEdit } from "@fortawesome/free-solid-svg-icons";
-import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 const baseURL = 'https://3001-white-impala-sa4c1pjn.ws-us03.gitpod.io'
@@ -47,7 +44,7 @@ export default class Conversations extends React.Component {
 
                     <div className='d-flex justify-content-between edit_message'>
                         <p><span className='chat_name'>{item.name}:</span> {item.message}</p>
-                        <a className='cursor' name={item._id} onClick={this.editMessage}>&#9998;</a>
+                        <a className='cursor' name={item._id} onClick={this.editMessage} href='/#'>&#9998;</a>
                     </div>
 
                 ))}
@@ -76,7 +73,7 @@ export default class Conversations extends React.Component {
                                 <div style={{ display: this.state.editing ? 'block' : 'none' }} >
                                     <div className='d-flex mb-2 edit_ok'>
                                         <input className='form-control' type='text' name='editedMessage' onChange={this.updateFormFields}></input>
-                                        <a name={item._id} className='cursor' onClick={this.confirmEdit}>&#9745;</a>
+                                        <a name={item._id} className='cursor' onClick={this.confirmEdit} href='/#'>&#9745;</a>
                                     </div>
                                 </div>
                                 <div style={{ display: this.state.editing ? 'none' : 'block' }}>

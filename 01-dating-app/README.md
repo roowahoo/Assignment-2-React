@@ -31,7 +31,7 @@ Acceptance criteria: The app should take in user information and display them on
  1. Confidential information such as passwords are kept separate from other data provided by users.
 
  ## Structure
-![structure](/structure_skeletons/structure.png)
+![structure](structure_skeletons/structure.png)
 
 ### Information Architecture
 #### Content Inventory
@@ -67,6 +67,7 @@ User are able to view all profiles and filter search results based on age, gende
 ### Conversations
 Users are able to connect with other users through their profiles and start a chat with them. Chat is limited in that users are required to reload upon sending a message in order to view the updated chat.
 
+## Technologies
 
 
  
