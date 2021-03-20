@@ -76,8 +76,7 @@ Users are able to connect with other users through their profiles and start a ch
 [InVision](invisionapp.com) was used for drawing skeleton.        !!!!!!!!!!
 [Canva](www.canva.com) was used for creating the logo.
 [Google fonts](https://fonts.google.com/) was used to import fonts.
-[Paul's Github](https://github.com/kunxin-chor?tab=repositories) was used as reference to recreate code that has been taught in class.
-[Javatpoint](https://www.javatpoint.com/calculate-age-using-javascript) was used as reference for code to calculate age.
+
 
 ## Testing
 
@@ -119,4 +118,22 @@ b. Alert will confirm if user wants to delete
 c. Click 'ok'
 d. User should no longer see their profile
 
+## Deployment
+Hosting Platform: Github
+1. Navigated to settings of assignment repository
+2. Selected 'branch:master'
+3. Save to be published
+
+Database platform: Mongodb
+
+Dependencies:
+* Axios
+* Reactstrap
+* Bootstrap
+
+## Credits
+[Paul's Github](https://github.com/kunxin-chor?tab=repositories) was used as reference to recreate code that has been taught in class.
+[Javatpoint](https://www.javatpoint.com/calculate-age-using-javascript) was used as reference for code to calculate age.
+[Unsplash](https://unsplash.com/) was my source of all profile images.
+[Zoosk](https://www.zoosk.com/date-mix/online-dating-advice/dating-profile-examples-popular-apps/) was my sourse of sample dating profile examples.
  

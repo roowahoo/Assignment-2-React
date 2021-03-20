@@ -7,6 +7,16 @@ import FindProfiles from './FindProfiles'
 import Conversations from './Conversations'
 import MyProfile from './MyProfile'
 import Logo from './images/Logo.png'
+import {
+    Collapse,
+    Navbar,
+    NavbarToggler,
+    NavbarBrand,
+    Nav,
+    NavItem,
+    NavLink,
+    NavbarText
+} from 'reactstrap';
 
 const baseURL = 'https://3001-white-impala-sa4c1pjn.ws-us03.gitpod.io'
 
@@ -19,7 +29,8 @@ export default class App extends React.Component {
         isLoggedIn: false,
         username: '',
         name: '',
-        user_id: ''
+        user_id: '',
+        isOpen: false
     }
 
     updateFormFields = event => {
@@ -46,8 +57,8 @@ export default class App extends React.Component {
             })
             alert('Login successful')
             this.setState({
-                findProfiles:true,
-                createProfiles:false
+                findProfiles: true,
+                createProfiles: false
             })
 
         } else {
@@ -94,16 +105,59 @@ export default class App extends React.Component {
         })
     }
 
+    toggle = event => {
+        if (this.state.isOpen === false) {
+            this.setState({
+                isOpen: true
+            })
+
+        } else {
+            this.setState({
+                isOpen: false
+            })
+        }
+
+
+    }
+
 
     render() {
         return (
             <React.Fragment>
                 <div className="App">
-                    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                    <div>
+                        <Navbar color="light" light expand="md">
+                            <NavbarBrand href="/"><img src={Logo} id='logo' alt='' /></NavbarBrand>
+                            <NavbarToggler onClick={this.toggle} />
+                            <Collapse style={{ display: this.state.isOpen ? 'block' : 'none' }} navbar>
+                                <Nav className="mr-auto" navbar>
+                                    <NavItem>
+                                        <NavLink onClick={this.createLink} >Create Profile</NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink onClick={this.findLink} >Find Profiles</NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink onClick={this.conversationsLink} >Conversations</NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink onClick={this.myProfileLink} >My Profile</NavLink>
+                                    </NavItem>
+                                </Nav>
+                                <NavbarText>
+                                    <div className='d-flex'>
+                                        <input className='form-control mx-3' type='text' name='username' value={this.state.username} onChange={this.updateFormFields} placeholder='  Username'></input>
+                                        <button className='btn pinkBtn' onClick={this.validate}>Login</button>
+                                    </div>
+                                </NavbarText>
+                            </Collapse>
+                        </Navbar>
+                    </div>
+                    {/* <nav className="navbar navbar-expand-lg navbar-light bg-light">
                         <div className="container-fluid">
-                            
+
                             <ul className="navbar-nav">
-                                <img src={Logo} id='logo' alt=''/>
+                                <img src={Logo} id='logo' alt='' />
                                 <li className="nav-item">
                                     <a className="nav-link cursor" onClick={this.createLink} href='/#'>Create Profile</a>
                                 </li>
@@ -124,7 +178,7 @@ export default class App extends React.Component {
                             </div>
                         </div>
 
-                    </nav>
+                    </nav> */}
 
                     {this.state.createProfiles && <CreateProfiles isLoggedIn={this.state.isLoggedIn} />}
                     {this.state.findProfiles && <FindProfiles isLoggedIn={this.state.isLoggedIn} name={this.state.name} user_id={this.state.user_id} username={this.state.username} />}
