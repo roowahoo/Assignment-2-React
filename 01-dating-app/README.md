@@ -33,4 +33,22 @@ Acceptance criteria: The app should take in user information and display them on
  ## Structure
 !(/structure_skeletons/structure.png)
 
+### Information Architecture
+#### Content Inventory
+1. Name, age, interest categories, photo and introduction write-up is displayed on user profiles.
+2. Old and existing conversations with name of conversing partner and messages sent. 
+
+#### Interaction Design
+1. Understandability: Profile content are presented on cards with consistent layouts and forms have clear input titles.
+2. Learnability: Navigation links are positioned at the top where users are familiar with and are consistent throughout the pages. Cursors and font color changes on links on hover to indicate that it is clickable.
+3 Operability:
+* Links on navbar are working
+* Forms are working and display an error message when submission fails
+* Links that requires user sign-up display an alert message when user is not logged in
+4. Attractiveness:
+* Padding and margin are present to improve readability
+* Layouts make best use of device user is on
+
+
+
  

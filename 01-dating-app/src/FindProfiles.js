@@ -60,9 +60,9 @@ export default class FindProfiles extends React.Component {
         return (
             <React.Fragment>
                 <div style={{ display: this.state.display ? 'block' : 'none' }}>
-                    <div id='search'>
+                    <div id='search' className='container'>
                         <div className='row pb-2' >
-                            <div className='col-3'>
+                            <div className='col-6'>
                                 <Label for="exampleSelect">Gender</Label>
                                 <Input onChange={this.updateFormFields} type="select" name="gender" id="exampleSelect">
                                     <option value='' name=''>--Select--</option>
@@ -70,7 +70,7 @@ export default class FindProfiles extends React.Component {
                                     <option value='female' name='gender'>Female</option>
                                 </Input>
                             </div>
-                            <div className='col-3'>
+                            <div className='col-6'>
 
                                 <Label for="exampleSelect">Age Range</Label>
                                 <Input onChange={this.updateFormFields} type="select" name="age" id="exampleSelect">
@@ -83,29 +83,29 @@ export default class FindProfiles extends React.Component {
                         </div>
 
                         <Label>Interests</Label>
-                        <div className='d-flex'>
+                        <div className='d-flex interests row'>
 
-                            <div className='mx-5'>
+                            <div className='col-2'>
                                 <Label check>
                                     <Input type='checkbox' name='interests' value='sports' onChange={this.updateInterests} />Sports</Label>
                             </div>
 
-                            <div className='mx-5'>
+                            <div className='col-2'>
                                 <Label check>
                                     <Input type='checkbox' name='interests' value='arts' onChange={this.updateInterests} />Arts</Label>
                             </div>
 
-                            <div className='mx-5'>
+                            <div className='col-2'>
                                 <Label check>
                                     <Input type='checkbox' name='interests' value='food' onChange={this.updateInterests} />Food</Label>
                             </div>
 
-                            <div className='mx-5'>
+                            <div className='col-2'>
                                 <Label check >
                                     <Input type='checkbox' name='interests' value='travel' onChange={this.updateInterests} />Travel</Label>
                             </div>
 
-                            <div className='mx-5'>
+                            <div className='col-2'>
                                 <Label check>
                                     <Input type='checkbox' name='interests' value='education' onChange={this.updateInterests} />Education</Label>
                             </div>

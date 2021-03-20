@@ -9,7 +9,8 @@
 
 #logo{
     height:90px;
-    position:relative
+    position:relative;
+    margin-right:20px
 }
 
 .nav-item{
@@ -53,12 +54,7 @@
     background-color: rgba(255, 255, 255, 0.8);
 }
 
-.card{
-    border:1px solid white;
-    width:50%;
-    margin:auto;
-    margin-top:40px 
-}
+
 
 img{
     height: 100%;
@@ -124,6 +120,11 @@ img{
     
 }
 
+.edit_message p{
+    word-wrap:break-word;
+    width:100%
+}
+
 
 #validate{
     border:1px solid gray;
@@ -147,6 +148,17 @@ img{
     padding:30px;
     justify-content: center;
     background-color: rgba(255, 255, 255, 0.8);
+}
+
+.interests div{
+    margin:0 15px
+}
+
+.card{
+    border:1px solid white;
+    width:80%;
+    margin:auto;
+    margin-top:40px 
 }
 }
 @media (min-width: 360px){
@@ -183,6 +195,13 @@ img{
     padding:30px;
     justify-content: center;
     background-color: rgba(255, 255, 255, 0.8);
+}
+
+.card{
+    border:1px solid white;
+    width:50%;
+    margin:auto;
+    margin-top:40px 
 }
 
 }
