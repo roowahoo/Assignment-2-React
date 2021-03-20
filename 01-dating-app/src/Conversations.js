@@ -65,8 +65,8 @@ export default class Conversations extends React.Component {
         return (
             <div>
                 {this.state.conversations.map(item => (
-                    <div>
-                        <div className="card messages">
+                    <div className='messages_padding'>
+                        <div className="card messages" key={item._id}>
                             <div className="card-body">
                                 <h5 className="card-title name_heading" >{this.renderChatName(item)}</h5>
                                 <div className="card-text">{this.renderMessages(item.messages)}</div>

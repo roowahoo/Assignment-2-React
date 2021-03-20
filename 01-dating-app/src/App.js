@@ -126,22 +126,22 @@ export default class App extends React.Component {
             <React.Fragment>
                 <div className="App">
                     <div>
-                        <Navbar color="light" light expand="md">
+                        <Navbar color="light" light expand="md" fixed='top' className='mb-2'>
                             <NavbarBrand href="/"><img src={Logo} id='logo' alt='' /></NavbarBrand>
                             <NavbarToggler onClick={this.toggle} />
                             <Collapse style={{ display: this.state.isOpen ? 'block' : 'none' }} navbar>
                                 <Nav className="mr-auto" navbar>
                                     <NavItem>
-                                        <NavLink onClick={this.createLink} >Create Profile</NavLink>
+                                        <NavLink className='cursor' onClick={this.createLink} >Create Profile</NavLink>
                                     </NavItem>
                                     <NavItem>
-                                        <NavLink onClick={this.findLink} >Find Profiles</NavLink>
+                                        <NavLink className='cursor' onClick={this.findLink} >Find Profiles</NavLink>
                                     </NavItem>
                                     <NavItem>
-                                        <NavLink onClick={this.conversationsLink} >Conversations</NavLink>
+                                        <NavLink className='cursor' onClick={this.conversationsLink} >Conversations</NavLink>
                                     </NavItem>
                                     <NavItem>
-                                        <NavLink onClick={this.myProfileLink} >My Profile</NavLink>
+                                        <NavLink className='cursor' onClick={this.myProfileLink} >My Profile</NavLink>
                                     </NavItem>
                                 </Nav>
                                 <NavbarText>
@@ -153,32 +153,6 @@ export default class App extends React.Component {
                             </Collapse>
                         </Navbar>
                     </div>
-                    {/* <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                        <div className="container-fluid">
-
-                            <ul className="navbar-nav">
-                                <img src={Logo} id='logo' alt='' />
-                                <li className="nav-item">
-                                    <a className="nav-link cursor" onClick={this.createLink} href='/#'>Create Profile</a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="nav-link cursor" onClick={this.findLink} href='/#'>Find Profiles</a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="nav-link cursor" onClick={this.conversationsLink} href='/#'>Conversations</a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="nav-link cursor" onClick={this.myProfileLink} href='/#'>My Profile</a>
-                                </li>
-                            </ul>
-
-                            <div className='d-flex'>
-                                <input className='form-control mx-3' type='text' name='username' value={this.state.username} onChange={this.updateFormFields} placeholder='  Username'></input>
-                                <button className='btn pinkBtn' onClick={this.validate}>Login</button>
-                            </div>
-                        </div>
-
-                    </nav> */}
 
                     {this.state.createProfiles && <CreateProfiles isLoggedIn={this.state.isLoggedIn} />}
                     {this.state.findProfiles && <FindProfiles isLoggedIn={this.state.isLoggedIn} name={this.state.name} user_id={this.state.user_id} username={this.state.username} />}
