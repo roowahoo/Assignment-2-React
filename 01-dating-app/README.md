@@ -31,6 +31,6 @@ Acceptance criteria: The app should take in user information and display them on
  1. Confidential information such as passwords are kept separate from other data provided by users.
 
  ## Structure
-!(structure_skeletons/structure.png)
+!(/structure_skeletons/structure.png)
 
  
