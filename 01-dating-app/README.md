@@ -79,5 +79,44 @@ Users are able to connect with other users through their profiles and start a ch
 [Paul's Github](https://github.com/kunxin-chor?tab=repositories) was used as reference to recreate code that has been taught in class.
 [Javatpoint](https://www.javatpoint.com/calculate-age-using-javascript) was used as reference for code to calculate age.
 
+## Testing
+
+1. Test that user can create a profile
+a. Click on 'Create Profile' at the top
+b. Enter all inputs
+c. Error message will display under username to inform user when username is invalid or taken
+d. Submit
+d. Alert should inform user of successful creation of profile
+d. User profile will be displayed in 'Find Profiles'
+
+2. Test user entering an invalid username on login
+a. Enter a wrong username 
+b. Alert should inform user that user is not found
+
+3. Test chat simulation
+a. Create profile, login with unique username and click on 'Find Profiles'
+b. Select a profile and click connect
+c. Enter a message and sending
+d. Click on 'COnversations'
+e. Conversation will be displayed
+
+4. Test edit messages
+a. Following test case 3, click on pencil icon to the right of a message to edit
+b. Enter new message below and click on tick icon to the right of the input textbox
+c. Click out of 'Conversations' and click in again
+d. Message should be edited
+
+5. Test update profile
+a. Login with unique username
+b. Click on 'My Profile'
+c. Edit any input 
+d. Update
+e. Alert will inform user upon successful update
+
+6. Test delete profile
+a. Following test case 4, click 'delete'
+b. Alert will confirm if user wants to delete
+c. Click 'ok'
+d. User should no longer see their profile
 
  
