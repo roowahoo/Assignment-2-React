@@ -31,7 +31,7 @@ Acceptance criteria: The app should take in user information and display them on
  1. Confidential information such as passwords are kept separate from other data provided by users.
 
  ## Structure
-!(/structure_skeletons/structure.png)
+![structure](/structure_skeletons/structure.png)
 
 ### Information Architecture
 #### Content Inventory
@@ -48,6 +48,24 @@ Acceptance criteria: The app should take in user information and display them on
 4. Attractiveness:
 * Padding and margin are present to improve readability
 * Layouts make best use of device user is on
+
+## Skeleton
+
+## Surface
+### Visual Design
+* Theme colours chosen for the app(shades of red) to match the context that the app is based on that is, finding love
+* 2 hands in the logo design signifies 2 people reaching out to each other
+* Font chosen is readable
+
+## Features
+### Create Profile
+Users can create a profile that will be displayed on the app for other users to find. Unique usernames will be used as verification purposes to use other features in the app and is limited in terms of security.
+
+### Find profiles
+User are able to view all profiles and filter search results based on age, gender and interests.
+
+### Conversations
+Users are able to connect with other users through their profiles and start a chat with them. Chat is limited in that users are required to reload upon sending a message in order to view the updated chat.
 
 
 
