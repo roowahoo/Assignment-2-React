@@ -83,7 +83,7 @@ export default class CreateProfiles extends React.Component {
 
                     <div className='m-3 text-left'>
                         <Label for="exampleSelect">Country of Residence</Label>
-                        <Input type="select" name="country" id="exampleSelect" onChange={this.updateFormFields}>
+                        <Input type="select" name="country" onChange={this.updateFormFields}>
                             <option name='country' value='' >--Select--</option>
                             <option name='country' value='Australia' >Australia</option>
                             <option name='country' value='Hong Kong' >Hong Kong</option>

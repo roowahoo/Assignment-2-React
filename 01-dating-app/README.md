@@ -71,7 +71,7 @@ Acceptance criteria: The app should take in user information and display them on
 Users can create a profile that will be displayed on the app for other users to find. Unique usernames will be used as verification purposes to use other features in the app and is limited in terms of security.
 
 ### Find profiles
-User are able to view all profiles and filter search results based on age, gender and interests.
+Users are able to view all profiles and filter search results based on age, gender and interests and country. Demonstration for combining search queries with 'country' has been ommitted as demonstration has been done on others.
 
 ### Conversations
 Users are able to connect with other users through their profiles and start a chat with them. Chat is limited in that users are required to reload upon sending a message in order to view the updated chat.
@@ -83,7 +83,7 @@ Users are able to connect with other users through their profiles and start a ch
 
 [Bootstrap 5](https://getbootstrap.com/docs/5.0/getting-started/introduction/) was used for navbar and CSS in margins/padding.  
 
-[Reactstrap](https://reactstrap.github.io/components/form/) input and label were used to render form in FindProfiles.js.  
+[Reactstrap](https://reactstrap.github.io/components/form/) input,label,row,col were used for forms.
 
 [Lucid](lucid.app) was used for drawing structure.  
 

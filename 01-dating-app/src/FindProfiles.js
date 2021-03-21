@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Label, Input } from 'reactstrap'
+import { Row, Col } from 'reactstrap'
 
 const baseURL = 'https://3001-white-impala-sa4c1pjn.ws-us03.gitpod.io'
 
@@ -12,6 +13,7 @@ export default class FindProfiles extends React.Component {
         profiles: [],
         gender: '',
         age: '',
+        country: '',
         interests: [],
         sendMsg: false,
         display: true,
@@ -57,64 +59,70 @@ export default class FindProfiles extends React.Component {
     render() {
         return (
             <React.Fragment>
+
                 <div style={{ display: this.state.display ? 'block' : 'none' }} id='searchedit_padding'>
                     <div className='container' id='search'>
-
-                            <div className='row searchRow'>
-                                <div className='col-6'>
-                                    <Label for="exampleSelect">Gender</Label>
-                                    <Input onChange={this.updateFormFields} type="select" name="gender" id="exampleSelect">
-                                        <option value='' name=''>--Select--</option>
-                                        <option value='male' name='gender'>Male</option>
-                                        <option value='female' name='gender'>Female</option>
-                                    </Input>
-                                </div>
-                                <div className='col-6'>
-
-                                    <Label for="exampleSelect">Age Range</Label>
-                                    <Input onChange={this.updateFormFields} type="select" name="age" id="exampleSelect">
-                                        <option value='' name=''>--Select--</option>
-                                        <option value='20' name='age'>20s</option>
-                                        <option value='30' name='age'>30s</option>
-                                    </Input>
-                                </div>
-
-                            </div>
-
-                            <Label>Interests</Label>
-                            <div className='d-flex interests row'>
-
-                                <div className='col-2'>
-                                    <Label check>
-                                        <Input type='checkbox' name='interests' value='sports' onChange={this.updateInterests} />Sports</Label>
-                                </div>
-
-                                <div className='col-2'>
-                                    <Label check>
-                                        <Input type='checkbox' name='interests' value='arts' onChange={this.updateInterests} />Arts</Label>
-                                </div>
-
-                                <div className='col-2'>
-                                    <Label check>
-                                        <Input type='checkbox' name='interests' value='food' onChange={this.updateInterests} />Food</Label>
-                                </div>
-
-                                <div className='col-2'>
-                                    <Label check >
-                                        <Input type='checkbox' name='interests' value='travel' onChange={this.updateInterests} />Travel</Label>
-                                </div>
-
-                                <div className='col-2'>
-                                    <Label check>
-                                        <Input type='checkbox' name='interests' value='education' onChange={this.updateInterests} />Education</Label>
-                                </div>
-                            </div>
+                        <Row className='searchRow'>
+                            <Col xs='12' md='3'>
+                                <Label for="exampleSelect">Gender</Label>
+                                <Input onChange={this.updateFormFields} type="select" name="gender">
+                                    <option value='' name=''>--Select--</option>
+                                    <option value='male' name='gender'>Male</option>
+                                    <option value='female' name='gender'>Female</option>
+                                </Input>
+                            </Col>
+                            <Col xs='12' md='3'>
+                                <Label for="exampleSelect">Age Range</Label>
+                                <Input onChange={this.updateFormFields} type="select" name="age">
+                                    <option value='' name=''>--Select--</option>
+                                    <option value='20' name='age'>20s</option>
+                                    <option value='30' name='age'>30s</option>
+                                </Input>
+                            </Col>
+                            <Col xs='12' md='4'>
+                                <Label for="exampleSelect">Country of Residence</Label>
+                                <Input type="select" name="country" onChange={this.updateFormFields}>
+                                    <option name='country' value='' >--Select--</option>
+                                    <option name='country' value='Australia' >Australia</option>
+                                    <option name='country' value='Hong Kong' >Hong Kong</option>
+                                    <option name='country' value='Singapore' >Singapore</option>
+                                    <option name='country' value='United Kingdom' >United Kingdom</option>
+                                    <option name='country' value='United States of America' >United States of America</option>
+                                </Input>
+                            </Col>
+                        </Row>
 
 
-                            <div className='d-flex justify-content-end'>
-                                <button className='btn pinkBtn mt-2' onClick={this.searchProfile}>Search</button>
-                            </div>
-                        
+
+                        <Label>Interests</Label>
+                        <Row className='interests'>
+                            <Col xs='6' md='2'>
+                                <Label check>
+                                    <Input type='checkbox' name='interests' value='sports' onChange={this.updateInterests} />Sports</Label>
+                            </Col>
+                            <Col xs='6' md='2'>
+                                <Label check>
+                                    <Input type='checkbox' name='interests' value='arts' onChange={this.updateInterests} />Arts</Label>
+                            </Col>
+                            <Col xs='6' md='2'>
+                                <Label check>
+                                    <Input type='checkbox' name='interests' value='food' onChange={this.updateInterests} />Food</Label>
+                            </Col>
+                            <Col xs='6' md='2'>
+                                <Label check >
+                                    <Input type='checkbox' name='interests' value='travel' onChange={this.updateInterests} />Travel</Label>
+                            </Col>
+                            <Col xs='6' md='2'>
+                                <Label check>
+                                    <Input type='checkbox' name='interests' value='education' onChange={this.updateInterests} />Education</Label>
+                            </Col>
+                        </Row>
+
+
+                        <div className='d-flex justify-content-end'>
+                            <button className='btn pinkBtn mt-2' onClick={this.searchProfile}>Search</button>
+                        </div>
+
 
                     </div>
 
@@ -127,10 +135,10 @@ export default class FindProfiles extends React.Component {
 
                 <div style={{ display: this.state.sendMsg ? 'block' : 'none' }} id='sendMsg' >
                     <div className='d-flex'>
-                        
+
                         <input className='form-control' type='text' name='message' value={this.state.message} onChange={this.updateFormFields} placeholder='Send a message'></input>
                         <button className='btn pinkBtn' onClick={this.send}>Send</button>
-                        
+
                     </div>
                 </div>
 
@@ -168,7 +176,8 @@ export default class FindProfiles extends React.Component {
         let searchValue = {
             gender: this.state.gender,
             interests: this.state.interests,
-            age: this.state.age
+            age: this.state.age,
+            country: this.state.country
 
         }
         console.log(searchValue)
@@ -197,7 +206,17 @@ export default class FindProfiles extends React.Component {
                 profiles: response.data
             })
         }
-        if (this.state.gender !== '' && this.state.interests.length !== 0 && this.state.age !== '') {
+
+        if (this.state.gender === '' && this.state.interests.length === 0 && this.state.age === '' && this.state.country !== '') {
+            let response = await axios.post(baseURL + '/searchbycountry', searchValue)
+            console.log(response)
+            this.setState({
+                profiles: response.data
+            })
+        }
+
+
+        if (this.state.gender !== '' && this.state.interests.length !== 0 && this.state.age !== '' && this.state.country !== '') {
             let response = await axios.post(baseURL + '/searchbyall', searchValue)
             console.log(response)
             this.setState({

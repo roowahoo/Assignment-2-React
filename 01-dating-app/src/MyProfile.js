@@ -201,8 +201,5 @@ export default class MyProfile extends React.Component {
             window.location = '/'
 
         }
-
-
-
     }
 }
