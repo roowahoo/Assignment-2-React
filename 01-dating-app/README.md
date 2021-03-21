@@ -50,6 +50,15 @@ Acceptance criteria: The app should take in user information and display them on
 * Layouts make best use of device user is on
 
 ## Skeleton
+### Create Profile
+![Create Profile](structure_skeletons/CreateProfile.png)
+### Find Profiles
+![Find Profiles](structure_skeletons/FindProfiles.png)
+### Conversations
+![Conversations](structure_skeletons/Conversations.png)
+### My Profile
+![My Profile](structure_skeletons/MyProfile.png)
+
 
 ## Surface
 ### Visual Design
@@ -117,6 +126,11 @@ a. Following test case 4, click 'delete'
 b. Alert will confirm if user wants to delete
 c. Click 'ok'
 d. User should no longer see their profile
+
+7. Test search bar
+a. Click on 'Find Profiles'
+b. Select search filters and click 'search'
+c. Filtered profiles should display below
 
 ## Deployment
 Hosting Platform: Github
