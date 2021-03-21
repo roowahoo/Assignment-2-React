@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import CreateProfiles from './CreateProfiles'
+import { Label, Input } from 'reactstrap'
 
 const baseURL = 'https://3001-white-impala-sa4c1pjn.ws-us03.gitpod.io'
 
@@ -14,6 +15,7 @@ export default class MyProfile extends React.Component {
         editedGender: '',
         editedAge: '',
         editedDob: '',
+        editedCountry:'',
         editedInterests: [],
         editedIntroduction: '',
         editedImage: '',
@@ -54,6 +56,18 @@ export default class MyProfile extends React.Component {
                             <div className='m-3 text-left'>
                                 <label className='form-label'>DOB</label>
                                 <input className="form-control" type="date" name='editedDob' value={this.state.editedDob} onChange={this.updateFormFields} />
+                            </div>
+
+                            <div className='m-3 text-left'>
+                                <Label for="exampleSelect">Country of Residence</Label>
+                                <Input type="select" value={this.state.editedCountry} name="editedCountry" onChange={this.updateFormFields}>
+                                    <option name='country' value='' >--Select--</option>
+                                    <option name='country' value='Australia' >Australia</option>
+                                    <option name='country' value='Hong Kong' >Hong Kong</option>
+                                    <option name='country' value='Singapore' >Singapore</option>
+                                    <option name='country' value='United Kingdom' >United Kingdom</option>
+                                    <option name='country' value='United States of America' >United States of America</option>
+                                </Input>
                             </div>
 
                             <div className='m-3'>
@@ -135,6 +149,7 @@ export default class MyProfile extends React.Component {
                 editedUsername: userProfile.data.username,
                 editedGender: userProfile.data.gender,
                 editedDob: userProfile.data.dob,
+                editedCountry:userProfile.data.country,
                 editedInterests: userProfile.data.interests,
                 editedIntroduction: userProfile.data.introduction,
                 editedImage: userProfile.data.image,
@@ -168,19 +183,13 @@ export default class MyProfile extends React.Component {
             gender: this.state.editedGender,
             age: this.getAge(this.state.editedDob),
             dob: this.state.editedDob,
+            country:this.state.editedCountry,
             interests: this.state.editedInterests,
             introduction: this.state.editedIntroduction,
         }
 
         axios.put(baseURL + '/editProfile', { ...newProfile })
         alert('Profile updated')
-
-        // let newUsername = {
-        //     user_id: this.state.user_id,
-        //     username: this.state.username
-        // }
-        // axios.put(baseURL + '/editUsername', { ...newUsername })
-
 
     }
 

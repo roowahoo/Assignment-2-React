@@ -77,14 +77,21 @@ User are able to view all profiles and filter search results based on age, gende
 Users are able to connect with other users through their profiles and start a chat with them. Chat is limited in that users are required to reload upon sending a message in order to view the updated chat.
 
 ## Technologies
-[Gitpod](www.gitpod.io) was the coding platform used.
-[GitHub](github.com) was used for repositories.
-[Bootstrap 5](https://getbootstrap.com/docs/5.0/getting-started/introduction/) was used for navbar and CSS in margins/padding.
-[Reactstrap](https://reactstrap.github.io/components/form/) input and label were used to render form in FindProfiles.js.
-[Lucid](lucid.app) was used for drawing structure.
-[InVision](invisionapp.com) was used for drawing skeleton.        !!!!!!!!!!
-[Canva](www.canva.com) was used for creating the logo.
-[Google fonts](https://fonts.google.com/) was used to import fonts.
+[Gitpod](www.gitpod.io) was the coding platform used.  
+
+[GitHub](github.com) was used for repositories.  
+
+[Bootstrap 5](https://getbootstrap.com/docs/5.0/getting-started/introduction/) was used for navbar and CSS in margins/padding.  
+
+[Reactstrap](https://reactstrap.github.io/components/form/) input and label were used to render form in FindProfiles.js.  
+
+[Lucid](lucid.app) was used for drawing structure.  
+
+[InVision](invisionapp.com) was used for drawing skeleton.  
+
+[Canva](www.canva.com) was used for creating the logo.  
+
+[Google fonts](https://fonts.google.com/) was used to import fonts.  
 
 
 ## Testing

@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import { Label, Input } from 'reactstrap';
 
 const baseURL = 'https://3001-white-impala-sa4c1pjn.ws-us03.gitpod.io'
 
@@ -12,9 +13,10 @@ export default class CreateProfiles extends React.Component {
         age: '',
         dob: '',
         gender: '',
+        country: '',
         interests: [],
         introduction: '',
-        image_url:'',
+        image_url: '',
         errorMessage: false,
         isLoggedIn: this.props.isLoggedIn
 
@@ -31,7 +33,7 @@ export default class CreateProfiles extends React.Component {
         for (let eachProfile of this.state.profiles) {
             acc.push(
                 <div key={eachProfile._id} className='profiles'>
-                    <img alt='' src={eachProfile.image}/>
+                    <img alt='' src={eachProfile.image} />
                     <h5>{eachProfile.name}, {eachProfile.age}</h5>
                     <p>Interests: {eachProfile.interests}</p>
                     <p>About: {eachProfile.introduction}</p>
@@ -79,18 +81,30 @@ export default class CreateProfiles extends React.Component {
                         <input className="form-control" type="date" name='dob' value={this.state.dob} onChange={this.updateFormFields} />
                     </div>
 
+                    <div className='m-3 text-left'>
+                        <Label for="exampleSelect">Country of Residence</Label>
+                        <Input type="select" name="country" id="exampleSelect" onChange={this.updateFormFields}>
+                            <option name='country' value='' >--Select--</option>
+                            <option name='country' value='Australia' >Australia</option>
+                            <option name='country' value='Hong Kong' >Hong Kong</option>
+                            <option name='country' value='Singapore' >Singapore</option>
+                            <option name='country' value='United Kingdom' >United Kingdom</option>
+                            <option name='country' value='United States of America' >United States of America</option>
+                        </Input>
+                    </div>
+
                     <div className='m-3'>
                         <label className='form-label'>I Enjoy...</label>
                         <div className='form-check'>
-                            <input className='form-check-input' type='checkbox' name='interests' value='sports' onChange={this.updateInterests} checked={this.state.interests.includes('sports')}/>
+                            <input className='form-check-input' type='checkbox' name='interests' value='sports' onChange={this.updateInterests} checked={this.state.interests.includes('sports')} />
                             <label className='form-check-label'>Sports</label>
                         </div>
                         <div className='form-check'>
-                            <input className='form-check-input' type='checkbox' name='interests' value='arts' onChange={this.updateInterests} checked={this.state.interests.includes('arts')}/>
+                            <input className='form-check-input' type='checkbox' name='interests' value='arts' onChange={this.updateInterests} checked={this.state.interests.includes('arts')} />
                             <label className='form-check-label'>Arts</label>
                         </div>
                         <div className='form-check'>
-                            <input className='form-check-input' type='checkbox' name='interests' value='food' onChange={this.updateInterests} checked={this.state.interests.includes('food')}/>
+                            <input className='form-check-input' type='checkbox' name='interests' value='food' onChange={this.updateInterests} checked={this.state.interests.includes('food')} />
                             <label className='form-check-label'>Food</label>
                         </div>
                         <div className='form-check'>
@@ -117,7 +131,7 @@ export default class CreateProfiles extends React.Component {
                 </div>
 
                 <div id='profiles' className='m-3'>
-                    
+
                 </div>
 
             </React.Fragment>
@@ -178,10 +192,11 @@ export default class CreateProfiles extends React.Component {
             name: this.state.name,
             gender: this.state.gender,
             age: this.getAge(this.state.dob),
-            dob:this.state.dob,
+            dob: this.state.dob,
+            country: this.state.country,
             interests: this.state.interests,
             introduction: this.state.introduction,
-            image_url:this.state.image_url
+            image_url: this.state.image_url
         }
 
 
@@ -206,7 +221,7 @@ export default class CreateProfiles extends React.Component {
             let newUsername = {
                 username: this.state.username,
                 user_id: profileId,
-                name:this.state.name
+                name: this.state.name
             }
 
             if (this.showError() === true && this.state.name !== '' && this.state.dob !== '' && this.state.gender !== '' && this.state.interests.length > 0 && this.state.introduction !== '') {
