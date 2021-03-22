@@ -4,8 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { Label, Input } from 'reactstrap'
 import { Row, Col } from 'reactstrap'
 
-const baseURL = 'https://3001-white-impala-sa4c1pjn.ws-us03.gitpod.io'
-
+const baseURL = 'https://matchmade-assignment2.herokuapp.com'
 
 
 export default class FindProfiles extends React.Component {

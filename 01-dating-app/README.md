@@ -5,11 +5,16 @@
 
 ## Site owner goals
 
-MatchMade Dating is a dating app for singles looking to build new genuine relationships and ultimately find their lifelong partner. The goal of this app is to bring together singles with this same goal.
+MatchMade Dating is a dating app for singles looking to build new genuine relationships and ultimately find their lifelong partner. The goal of this app is to bring together people with this same goal.
 
 With the world going digital along with the Coronavirus pandemic which drove many to live online, there is an increasing need to shift the way we build connections with people. With MatchMade dating, users are able to reach out to other users who are similar to them and find opportunities to take their relationships further.
 
-Data colleccted from users such as their interests and age can be sold.
+Data collected from users such as their interests and age can be sold.
+
+## Project Complexity
+![Express](structure_skeletons/Mongo_Express_Complexity_Matrix)
+![React](structure_skeletons/React_Complexity_Matrix_1)
+![React](structure_skeletons/React_Complexity_Matrix)
 
 ## User Stories
 1. As a user, I want a platform for meeting people with the same goal as me which in this case, is finding a partner who has similar interests as me and whom I can get along with.
@@ -154,7 +159,10 @@ Dependencies:
 
 ## Credits
 [Paul's Github](https://github.com/kunxin-chor?tab=repositories) was used as reference to recreate code that has been taught in class.
+
 [Javatpoint](https://www.javatpoint.com/calculate-age-using-javascript) was used as reference for code to calculate age.
+
 [Unsplash](https://unsplash.com/) was my source of all profile images.
+
 [Zoosk](https://www.zoosk.com/date-mix/online-dating-advice/dating-profile-examples-popular-apps/) was my sourse of sample dating profile examples.
  

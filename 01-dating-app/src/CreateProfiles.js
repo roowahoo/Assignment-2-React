@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { Label, Input } from 'reactstrap';
 
-const baseURL = 'https://3001-white-impala-sa4c1pjn.ws-us03.gitpod.io'
+const baseURL = 'https://matchmade-assignment2.herokuapp.com'
 
 
 export default class CreateProfiles extends React.Component {
@@ -226,11 +226,6 @@ export default class CreateProfiles extends React.Component {
 
             if (this.showError() === true && this.state.name !== '' && this.state.dob !== '' && this.state.gender !== '' && this.state.interests.length > 0 && this.state.introduction !== '') {
                 await axios.post(baseURL + '/usernames', newUsername)
-                // let clone = [...this.state.username]
-                // clone.push(newUsername)
-                // this.setState({
-                //     username: clone,
-                // })
             }
             window.location.reload();
         } catch (e) {

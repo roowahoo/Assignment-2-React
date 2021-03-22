@@ -3,7 +3,7 @@ import axios from 'axios'
 import CreateProfiles from './CreateProfiles'
 import { Label, Input } from 'reactstrap'
 
-const baseURL = 'https://3001-white-impala-sa4c1pjn.ws-us03.gitpod.io'
+const baseURL = 'https://matchmade-assignment2.herokuapp.com'
 
 export default class MyProfile extends React.Component {
     state = {
