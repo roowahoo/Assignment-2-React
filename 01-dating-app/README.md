@@ -14,7 +14,7 @@ Data collected from users such as their interests and age can be sold.
 ## Project Complexity
 ![Express](structure_skeletons/Mongo_Express_Complexity_Matrix.png)
 ![React](structure_skeletons/React_Complexity_Matrix_1.png)
-![React](structure_skeletons/React_Complexity_Matrix.png)
+![React](structure_skeletons/React_Complexity_Matrix_2.png)
 
 ## User Stories
 1. As a user, I want a platform for meeting people with the same goal as me which in this case, is finding a partner who has similar interests as me and whom I can get along with.
