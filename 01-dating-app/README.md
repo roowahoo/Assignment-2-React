@@ -79,7 +79,7 @@ Users can create a profile that will be displayed on the app for other users to 
 Users are able to view all profiles and filter search results based on age, gender and interests and country. Demonstration for combining search queries with 'country' has been ommitted as demonstration has been done on others.
 
 ### Conversations
-Users are able to connect with other users through their profiles and start a chat with them. Chat is limited in that users are required to reload upon sending a message in order to view the updated chat.
+Users are able to connect with other users through their profiles and start a chat with them. Chat is limited in that users are required to exit and go into conversations again upon sending a message in order to view the updated chat.
 
 ## Technologies
 [Gitpod](www.gitpod.io) was the coding platform used.  
@@ -105,7 +105,7 @@ Users are able to connect with other users through their profiles and start a ch
 a. Click on 'Create Profile' at the top
 b. Enter all inputs
 c. Error message will display under username to inform user when username is invalid or taken
-d. Submit
+d. Click 'submit'
 d. Alert should inform user of successful creation of profile
 d. User profile will be displayed in 'Find Profiles'
 
@@ -137,20 +137,22 @@ e. Alert will inform user upon successful update
 a. Following test case 4, click 'delete'
 b. Alert will confirm if user wants to delete
 c. Click 'ok'
-d. User should no longer see their profile
+d. User should no longer see their profile or login with old username
 
 7. Test search bar
 a. Click on 'Find Profiles'
-b. Select search filters and click 'search'
+b. Select filters and click 'search'
 c. Filtered profiles should display below
 
 ## Deployment
-Hosting Platform: Github
-1. Navigated to settings of assignment repository
-2. Selected 'branch:master'
-3. Save to be published
+Hosting Platform: Netlify
+1. 'npm run build' from terminal
+2. Downloaded build folder
+3. Unzip folder
+4. Go to 'sites' on Netlify
+5. Dragged and dropped folder in to deploy
 
-Database platform: Mongodb
+Database platform: Mongodb and deployed to Heroku
 
 Dependencies:
 * Axios
