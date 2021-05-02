@@ -187,9 +187,12 @@ export default class MyProfile extends React.Component {
             interests: this.state.editedInterests,
             introduction: this.state.editedIntroduction,
         }
-
-        axios.put(baseURL + '/editProfile', { ...newProfile })
-        alert('Profile updated')
+        if (this.state.editedName !== '' && this.state.editedGender !== '' && this.state.editedDob !== '' && this.state.editedCountry !== '' && this.state.editedInterests.length > 0 && this.state.editedIntroduction !== '') {
+            axios.put(baseURL + '/editProfile', { ...newProfile })
+            alert('Profile updated')
+        }else{
+            alert('Please ensure all fields are filled in and valid')
+        }
 
     }
 
