@@ -145,7 +145,7 @@ export default class App extends React.Component {
                                     </NavItem>
                                 </Nav>
                                 <NavbarText>
-                                    <div className='d-flex'>
+                                    <div className='d-flex' style={{display:this.state.isLoggedIn ? 'none' :'block'}}>
                                         <input className='form-control mx-3' type='text' name='username' value={this.state.username} onChange={this.updateFormFields} placeholder='  Username'></input>
                                         <button className='btn pinkBtn' onClick={this.validate}>Login</button>
                                     </div>
