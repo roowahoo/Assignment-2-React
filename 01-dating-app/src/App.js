@@ -144,8 +144,8 @@ export default class App extends React.Component {
                                         <NavLink className='cursor' onClick={this.myProfileLink} >My Profile</NavLink>
                                     </NavItem>
                                 </Nav>
-                                <NavbarText>
-                                    <div className='d-flex' style={{display:this.state.isLoggedIn ? 'none' :'block'}}>
+                                <NavbarText style={{display:this.state.isLoggedIn ? 'none' :'block'}}>
+                                    <div className='d-flex' >
                                         <input className='form-control mx-3' type='text' name='username' value={this.state.username} onChange={this.updateFormFields} placeholder='  Username'></input>
                                         <button className='btn pinkBtn' onClick={this.validate}>Login</button>
                                     </div>
